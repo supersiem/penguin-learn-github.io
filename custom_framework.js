@@ -1,39 +1,80 @@
+
+let custom_components = [{
+    "name": "custom_component",
+    "tag": "custom_component",
+    "url": "custom_component",
+    "version": "1.0",
+    "custom_attributes": ["data"]
+}];
+
 function activate() {
-    let allLinks = document.querySelectorAll('weblink'); // Select <weblink> tags
+    try {
+        custom_components.forEach(component => {
+            let linkTriggers3 = document.querySelectorAll(component.tag);
+            linkTriggers3.forEach(async element => {
+                let data = await makeRequest(component.tag +"/"+ component.url + ".html");
 
-    allLinks.forEach(element => {
-        let originalLink = element.getAttribute('href'); // Get the original link
-        if (originalLink && originalLink !== "") {
-            element.setAttribute('href', "javascript:goTo('" + originalLink + "')"); // Set the href to JS function
+                data = data.replaceAll("{{version}}", component.version);
+                data = data.replaceAll("{{name}}", component.name);
+                component.custom_attributes.forEach(attr => {
+                    data = data.replaceAll("{{" + attr + "}}", element.getAttribute(attr));
+                    console.log("{{" + attr + "}}");    
+                })
+                element.innerHTML = data;
+                changeTag(element, "div");
+                activate_triggers();
+
+                data = await makeRequest(component.tag +"/"+ component.url + ".js");
+
+                data = data.replaceAll("{{version}}", component.version);
+                data = data.replaceAll("{{name}}", component.name);
+                component.custom_attributes.forEach(attr => {
+                    data = data.replaceAll("{{" + attr + "}}", element.getAttribute(attr));
+                    console.log("{{" + attr + "}}");    
+                })
+                eval(data);
+            });
+            
+        });
+    } catch (error) {
+        console.error('Error:', error);
+    }
+
+    
+    try {
+        let allLinks = document.querySelectorAll('weblink'); // Select <weblink> tags
+
+        allLinks.forEach(element => {
+            let originalLink = element.getAttribute('href'); // Get the original link
+            if (originalLink && originalLink !== "") {
+                element.setAttribute('href', "javascript:goTo('" + originalLink + "')"); // Set the href to JS function
+                element.innerHTML = element.innerHTML; // Transfer inner content of <weblink> to <a>
+    
+                changeTag(element, 'a'); // Replace <weblink> with the new <a> tag
+
+            }
+        });
+    
+    } catch (error) {
+        console.error('Error:', error);
+    }
+
+    try {
+        let linkTriggers = document.querySelectorAll('linktrigger'); // Select <weblink> tags
+
+        linkTriggers.forEach(element => {
+            let originalLink = element.getAttribute('js'); // Get the original link
+    
+            element.setAttribute('href', "javascript:eval('" + originalLink + "')"); // Set the href to JS function
             element.innerHTML = element.innerHTML; // Transfer inner content of <weblink> to <a>
-
+    
             changeTag(element, 'a'); // Replace <weblink> with the new <a> tag
-        }
-    });
-
-    let linkTriggers = document.querySelectorAll('linktrigger'); // Select <weblink> tags
-
-    linkTriggers.forEach(element => {
-        let originalLink = element.getAttribute('js'); // Get the original link
-
-        element.setAttribute('href', "javascript:eval('" + originalLink + "')"); // Set the href to JS function
-        element.innerHTML = element.innerHTML; // Transfer inner content of <weblink> to <a>
-
-        changeTag(element, 'a'); // Replace <weblink> with the new <a> tag
-
-    });
-
-
-
-    let Triggers = document.querySelectorAll('trigger'); // Select <trigger> tags
-
-    Triggers.forEach(element => {
-        eval(element.innerHTML);
-        element.remove();
-    });
-
-
-
+    
+        });
+    } catch (error) {
+        console.error('Error:', error);
+    }
+    activate_triggers();
 }
 async function goTo(url) {
     const data = await makeRequest(url);
@@ -58,8 +99,15 @@ async function makeRequest(url) {
         return null;
     }
 }
-
-
+function makeCustomComponent(name, tag, url, version, custom_attributes) {
+    custom_components.push({
+        "name": name,
+        "tag": tag,
+        "url": url,
+        "version": version,
+        "custom_attributes": custom_attributes
+    })
+}
 function checkElementExists(id) {
     var element = document.getElementById(id);
     if (element) {
@@ -68,7 +116,6 @@ function checkElementExists(id) {
         return false;
     }
 }
-
 function changeTag(element, newTagName) {
     if (!element) return null;
 
@@ -86,4 +133,17 @@ function changeTag(element, newTagName) {
 
     // Return the new element
     return newElement;
+}
+function activate_triggers() {
+    try {
+        let Triggers = document.querySelectorAll('trigger'); // Select <trigger> tags
+        console.log(Triggers);
+        Triggers.forEach(element => {
+            console.log(element.innerHTML);
+            eval(element.innerHTML);
+            element.remove();
+        });
+    } catch (error) {
+        console.error('Error:', error);
+    }
 }
