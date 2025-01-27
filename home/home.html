@@ -1,0 +1,37 @@
+
+    <style>
+        .tree {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+
+        .node {
+            margin: 4px 0;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .node-file {
+            cursor: default;
+            color: #666;
+        }
+
+        .node:hover {
+            background-color: #f0f0f0;
+        }
+
+        .children {
+            margin-left: 20px;
+            border-left: 1px dashed #ddd;
+            padding-left: 12px;
+        }
+
+        .toggle-icon {
+            margin-right: 6px;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+    <div id="tree-container" class="tree"></div>

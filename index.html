@@ -1,124 +1,135 @@
 <!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>penguin learn</title>
-    <script src="custom_framework.js"></script>
-    <script defer src="loader.js"></script>
-    <style>
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f9f9f9;
-    margin: 0;
-    padding: 0;
-    color: #333;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start; /* Zorg ervoor dat de inhoud vanaf de bovenkant wordt uitgelijnd */
-    height: 100vh;
-    text-align: center;
-    flex-direction: column; /* Zorg ervoor dat de inhoud zich verticaal stapelt */
-  }
-  
-  div {
-    width: 100%;
-    max-width: 800px;  /* Beperk de breedte van de inhoud */
-    padding: 20px;
-    background-color: white;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    margin: 20px;
-    box-sizing: border-box;
-  }
-  
-  h2 {
-    font-size: 2em;
-  }
-  
-  h3 {
-    font-size: 1.5em;
-  }
-  
-  button, a {
-    display: inline-block;
-    margin: 10px;
-    padding: 10px 20px;
-    background-color: #169abb;
-    color: white;
-    text-decoration: none;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
-    cursor: pointer;
-    border: none;
-  }
-  
-  a:hover, button:hover {
-    background-color: hsl(195, 88%, 53%);
-  }
-  
-  textarea {
-    width: 100%;
-    padding: 10px;
-    margin: 10px 0;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-  
-  select, button {
-    font-size: 1em;
-  }
-  
-  ul {
-    list-style-type: none;
-    padding: 0;
-  }
-  
-  ul li {
-    margin: 5px 0;
-  }
-  
-  /* Container voor lange lijsten, zorgt ervoor dat de knoppen zichtbaar blijven */
-  #vragenList, #antwoordenList {
-    max-height: 300px; /* Limiteer de hoogte van de lijsten */
-    overflow-y: auto; /* Zorgt voor scrollen als de lijst te lang is */
-    padding-right: 15px; /* Voorkomt dat de scrollbalk de lijst bedekt */
-  }
-  
-  /* Als de tekst te lang is, zorg ervoor dat het goed omgebroken wordt */
-  textarea, select, ul {
-    word-wrap: break-word;
-  }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>penguin learn</title>
+  <script src="custom_framework.js"></script>
+  <script defer src="loader.js"></script>
+  <link rel="stylesheet" href="home/icon_knop.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script defer src="gamelogic.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f9f9f9;
+      margin: 0;
+      padding: 0;
+    }
+
+
+    h2 {
+      font-size: 2em;
+    }
+
+    h3 {
+      font-size: 1.5em;
+    }
+
+    button,
+    a {
+      display: inline-block;
+      margin: 10px;
+      padding: 10px 20px;
+      background-color: #169abb;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+      cursor: pointer;
+      border: none;
+    }
+
+    a:hover,
+    button:hover {
+      background-color: hsl(195, 88%, 53%);
+    }
+
+    textarea {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    select,
+    button {
+      font-size: 1em;
+    }
+
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    ul li {
+      margin: 5px 0;
+    }
+
+    /* Container voor lange lijsten, zorgt ervoor dat de knoppen zichtbaar blijven */
+    #vragenList,
+    #antwoordenList {
+      max-height: 300px;
+      /* Limiteer de hoogte van de lijsten */
+      overflow-y: auto;
+      /* Zorgt voor scrollen als de lijst te lang is */
+      padding-right: 15px;
+      /* Voorkomt dat de scrollbalk de lijst bedekt */
+    }
+
+    /* Als de tekst te lang is, zorg ervoor dat het goed omgebroken wordt */
+    textarea,
+    select,
+    ul {
+      word-wrap: break-word;
+    }
+
     div {
       padding: 15px;
     }
-  
+
     h2 {
       font-size: 1.5em;
     }
-  
+
     h3 {
       font-size: 1.2em;
     }
-  
-    button, a.weblink {
+
+    button,
+    a.weblink {
       padding: 8px 16px;
     }
-  
+
     textarea {
       font-size: 0.9em;
     }
 
-body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-</style>
+    body {
+      display: flex;
+    }
+  </style>
 </head>
+
 <body>
-    <webpage></webpage>
+  <lu class="sidebar" style="width: 12.5%;">
+    <li>
+      <button class="icon_knop" onclick="goTo('instelingen/lijst_editor.html')"><i class="fa fa-plus"></i></button>
+    </li>
+    <li>
+      <button class="icon_knop" onclick="goTo('home.html')"><i class="fa fa-home"></i></button>
+    </li>
+    <li>
+      <button class="icon_knop" onclick="goTo('start.html')"><i class="fa fa-play"></i></button>
+    </li>
+  </lu>
+
+
+  <webpage style="margin-left:2em; margin-top: 0px; margin-right: 0px;"></webpage>
 
 </body>
+
 </html>
