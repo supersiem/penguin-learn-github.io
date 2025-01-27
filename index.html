@@ -4,17 +4,120 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>custom_framework test v1.3</title>
+    <title>penguin learn</title>
     <script src="custom_framework.js"></script>
     <script defer src="loader.js"></script>
+    <style>
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    margin: 0;
+    padding: 0;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Zorg ervoor dat de inhoud vanaf de bovenkant wordt uitgelijnd */
+    height: 100vh;
+    text-align: center;
+    flex-direction: column; /* Zorg ervoor dat de inhoud zich verticaal stapelt */
+  }
+  
+  div {
+    width: 100%;
+    max-width: 800px;  /* Beperk de breedte van de inhoud */
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 20px;
+    box-sizing: border-box;
+  }
+  
+  h2 {
+    font-size: 2em;
+  }
+  
+  h3 {
+    font-size: 1.5em;
+  }
+  
+  button, a {
+    display: inline-block;
+    margin: 10px;
+    padding: 10px 20px;
+    background-color: #169abb;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+    border: none;
+  }
+  
+  a:hover, button:hover {
+    background-color: hsl(195, 88%, 53%);
+  }
+  
+  textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  select, button {
+    font-size: 1em;
+  }
+  
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  ul li {
+    margin: 5px 0;
+  }
+  
+  /* Container voor lange lijsten, zorgt ervoor dat de knoppen zichtbaar blijven */
+  #vragenList, #antwoordenList {
+    max-height: 300px; /* Limiteer de hoogte van de lijsten */
+    overflow-y: auto; /* Zorgt voor scrollen als de lijst te lang is */
+    padding-right: 15px; /* Voorkomt dat de scrollbalk de lijst bedekt */
+  }
+  
+  /* Als de tekst te lang is, zorg ervoor dat het goed omgebroken wordt */
+  textarea, select, ul {
+    word-wrap: break-word;
+  }
+    div {
+      padding: 15px;
+    }
+  
+    h2 {
+      font-size: 1.5em;
+    }
+  
+    h3 {
+      font-size: 1.2em;
+    }
+  
+    button, a.weblink {
+      padding: 8px 16px;
+    }
+  
+    textarea {
+      font-size: 0.9em;
+    }
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+</style>
 </head>
 <body>
-    <navbar topbar_items='[
-        {"name": "Home", "url": "home.html"},
-        {"name": "About", "url": "over_ons.html"},
-        {"name": "Contact", "url": ""}
-    ]'></navbar>
-    <cool_button text="click me"></cool_button>
     <webpage></webpage>
 
 </body>
