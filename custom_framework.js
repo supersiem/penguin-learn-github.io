@@ -21,7 +21,7 @@ function activate() {
                     console.log("{{" + attr + "}}");    
                 })
                 element.innerHTML = data;
-                changeTag(element, "div");
+                changeTag(element, "custom_component_container");
                 activate_triggers();
 
                 data = await makeRequest(component.tag +"/"+ component.url + ".js");
