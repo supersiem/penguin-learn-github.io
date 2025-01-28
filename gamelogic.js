@@ -65,19 +65,42 @@ async function anwoord(input2) {
 
     icon_element.innerHTML = "ok"
 }
-
 async function get_list(id) {
-    let data = await makeRequest("https://api.wrts.nl/api/v3/public/lists/"+id);
-    let questions = [];
-    let answers = [];
-    
-    // Loop through all vocabulary items
-    jsonData.words_with_performance.forEach(entry => {
-      const questionIndex = entry.locales.findIndex(l => l.practise_type === 'question');
-      const answerIndex = entry.locales.findIndex(l => l.practise_type === 'answer');
-      if (questionIndex !== -1) questions.push(entry.words[questionIndex]);
-      if (answerIndex !== -1) answers.push(entry.words[answerIndex]);
-    });
-    vragen = [...questions];
-    antwoorden = [...answers];
+    try {
+        // Fetch data using the proxy
+        const response = await fetch('https://corsproxy.io/' + encodeURIComponent(`https://api.wrts.nl/api/v3/public/lists/${id}`));
+        
+        // Check if the response is OK (status code 200-299)
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        // Parse the JSON data
+        const data = await response.json();
+
+        // Initialize arrays for questions and answers
+        let questions = [];
+        let answers = [];
+
+        // Loop through all vocabulary items
+        data.words_with_performance.forEach(entry => {
+            const questionIndex = entry.locales.findIndex(l => l.practise_type === 'question');
+            const answerIndex = entry.locales.findIndex(l => l.practise_type === 'answer');
+
+            // Add questions and answers to their respective arrays
+            if (questionIndex !== -1) questions.push(entry.words[questionIndex]);
+            if (answerIndex !== -1) answers.push(entry.words[answerIndex]);
+        });
+
+        // Assign to global variables (if needed)
+        vragen = [...questions];
+        antwoorden = [...answers];
+
+        // Log the results for debugging
+        console.log('Questions:', vragen);
+        console.log('Answers:', antwoorden);
+
+    } catch (error) {
+        console.error('Error fetching or processing data:', error);
+    }
 }
