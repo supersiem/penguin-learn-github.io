@@ -1,1 +1,3 @@
-# dit is de vervanger van gostudy
+# penguin learn is een FOSS altanatief voor studygo
+
+#
