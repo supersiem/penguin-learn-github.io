@@ -65,3 +65,19 @@ async function anwoord(input2) {
 
     icon_element.innerHTML = "ok"
 }
+
+async function get_list(id) {
+    let data = await makeRequest("https://api.wrts.nl/api/v3/public/lists/"+id);
+    let questions = [];
+    let answers = [];
+    
+    // Loop through all vocabulary items
+    jsonData.words_with_performance.forEach(entry => {
+      const questionIndex = entry.locales.findIndex(l => l.practise_type === 'question');
+      const answerIndex = entry.locales.findIndex(l => l.practise_type === 'answer');
+      if (questionIndex !== -1) questions.push(entry.words[questionIndex]);
+      if (answerIndex !== -1) answers.push(entry.words[answerIndex]);
+    });
+    vragen = [...questions];
+    antwoorden = [...answers];
+}
