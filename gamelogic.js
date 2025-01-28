@@ -36,6 +36,8 @@ function importlijsten(waar) {
     const array2 = lines.filter((_, index) => index % 2 !== 0); // Odd indices (1, 3, 5...)
     vragen = [...array1]
     antwoorden = [...array2]
+    goTo('start.html');
+
 
 }
 function importlijsten_fromstr(input1) {
@@ -48,6 +50,8 @@ function importlijsten_fromstr(input1) {
     const array2 = lines.filter((_, index) => index % 2 !== 0); // Odd indices (1, 3, 5...)
     vragen = [...array1]
     antwoorden = [...array2]
+    goTo('start.html');
+
 }
 async function anwoord(input2) {
     let icon_element = document.getElementById('icon_knop');
@@ -99,6 +103,7 @@ async function get_list(id) {
         // Log the results for debugging
         console.log('Questions:', vragen);
         console.log('Answers:', antwoorden);
+        goTo('start.html');
 
     } catch (error) {
         console.error('Error fetching or processing data:', error);
