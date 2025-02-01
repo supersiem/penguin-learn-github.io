@@ -4,8 +4,11 @@ let antwoord_oud = antwoorden;
 let vragen_oud = vragen;
 let mode = 1
 let vraag = 0;
+let fase = 0;
 
 function nieuwe_vraag() {
+    document.getElementById("antwoord_vak").focus();
+    fase = 0;
     if (vragen.length == 0) {
         window.location.reload();
     }
@@ -54,6 +57,7 @@ function importlijsten_fromstr(input1) {
 
 }
 async function anwoord(input2) {
+    fase = 1;
     let icon_element = document.getElementById('icon_knop');
     let antwoord_van_gebruiker = document.getElementById('antwoord_vak').value.replace(/[^0-9a-z]/gi, '').toLowerCase();
     let antwoord_met_filter = antwoorden[vraag].replace(/[^0-9a-z]/gi, '').toLowerCase();
@@ -109,3 +113,13 @@ async function get_list(id) {
         console.error('Error fetching or processing data:', error);
     }
 }
+function enterpressalert(e, textarea){
+    var code = (e.keyCode ? e.keyCode : e.which);
+    if(code == 13) { //Enter keycode
+        if(fase == 0){
+            anwoord(document.getElementById('vraag'));
+            return;
+        }
+        if(fase == 1){goTo('start.html');return;}
+    }
+    }
