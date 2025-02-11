@@ -1,13 +1,17 @@
 let vragen = ["je", "il"];
 let antwoorden = ["ik", "hij"];
 let antwoord_oud = antwoorden;
-let vragen_oud = vragen;
 let mode = 1
 let vraag = 0;
 let fase = 0;
 
 function nieuwe_vraag() {
+
+    try{
     document.getElementById("antwoord_vak").focus();
+    } catch (error) {
+        console.log("not found");
+    }
     fase = 0;
     if (vragen.length == 0) {
         window.location.reload();
@@ -39,6 +43,8 @@ function importlijsten(waar) {
     const array2 = lines.filter((_, index) => index % 2 !== 0); // Odd indices (1, 3, 5...)
     vragen = [...array1]
     antwoorden = [...array2]
+    antwoord_oud = [...antwoorden];
+
     goTo('start.html');
 
 
@@ -53,7 +59,9 @@ function importlijsten_fromstr(input1) {
     const array2 = lines.filter((_, index) => index % 2 !== 0); // Odd indices (1, 3, 5...)
     vragen = [...array1]
     antwoorden = [...array2]
+ antwoord_oud = [...antwoorden];
     goTo('start.html');
+
 
 }
 async function anwoord(input2) {
@@ -72,6 +80,30 @@ async function anwoord(input2) {
 
 
     icon_element.innerHTML = "ok"
+}
+async function anwoord_multi(input2) {
+
+    let icon_element2 = document.getElementById('icon_knop_vraag_2');
+    let icon_element3 = document.getElementById('icon_knop_vraag_3');
+    let icon_element4 = document.getElementById('icon_knop_vraag_4');
+    // remove the buttons
+    icon_element2.remove();
+    icon_element3.remove();
+    icon_element4.remove();
+    fase = 1;
+    let text_vak = document.getElementById('vraag')
+    let icon_element = document.getElementById('icon_knop_vraag_1');
+    icon_element.setAttribute( "onClick", "javascript: goTo('start_multi.html');" );
+    if(input2){
+        icon_element.innerHTML = "hoera!";
+        text_vak.innerHTML = 'hoera je hebt het goed! &#x1F389;'
+        AntwoordGoed()
+        return
+    }
+    text_vak.innerHTML = 'het antwoord was '+ antwoorden[vraag];
+
+    icon_element.innerHTML = "ok"
+
 }
 async function get_list(id) {
     try {
@@ -103,10 +135,7 @@ async function get_list(id) {
         // Assign to global variables (if needed)
         vragen = [...questions];
         antwoorden = [...answers];
-
-        // Log the results for debugging
-        console.log('Questions:', vragen);
-        console.log('Answers:', antwoorden);
+        antwoord_oud = [...antwoorden];
         goTo('start.html');
 
     } catch (error) {
