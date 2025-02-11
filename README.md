@@ -10,3 +10,4 @@
  - [ ] opslaan van eigenlijsten
  - [ ] studygo API post <-- nu mee bezig gaat even duren.
  - [ ] in gedachten modes
+ - [ ] darkmode 
