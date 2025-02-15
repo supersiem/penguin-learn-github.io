@@ -112,6 +112,16 @@ async function get_list(id) {
         
         // Check if the response is OK (status code 200-299)
         if (!response.ok) {
+            new Notify({
+                title: 'Error!',
+                text: 'Er ging iets mis bij het ophalen van de lijst. Is de ID correct?',
+                autoclose: true,
+                autotimeout: 3000,
+                effect: 'slide',
+                speed: 300,
+                position: 'right top',
+                status: 'error'
+            });
             throw new Error(`HTTP error! Status: ${response.status}`);
         }
 
