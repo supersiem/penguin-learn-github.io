@@ -8,5 +8,7 @@ function update_darkmode() {
     // TODO: dit maken
 
     console.log(darkmode)
+    // TODO: dit doen
+    // document.getElementById("darkmode_button_icon")
 }
 update_darkmode()
