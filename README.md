@@ -4,10 +4,10 @@
 
  - [x] lijsten
  - [x] toets modes
- - [x]  meerkeuze
+ - [x] meerkeuze
  - [x] studygo API get
  - [ ] favorieten
  - [ ] opslaan van eigenlijsten
  - [ ] studygo API post <-- nu mee bezig gaat even duren.
- - [ ] in gedachten modes
- - [ ] darkmode 
+ - [x] in gedachten modes
+ - [ ] darkmode  
