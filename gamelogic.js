@@ -5,6 +5,15 @@ let mode = 1
 let vraag = 0;
 let fase = 0;
 
+// Add this helper function at the top to sanitize strings
+function sanitize(str) {
+    return str.replace(/&/g, '&amp;')
+              .replace(/</g, '&lt;')
+              .replace(/>/g, '&gt;')
+              .replace(/"/g, '&quot;')
+              .replace(/'/g, '&#39;');
+}
+
 function nieuwe_vraag() {
 
     try{
@@ -132,14 +141,14 @@ async function get_list(id) {
         let questions = [];
         let answers = [];
 
-        // Loop through all vocabulary items
+        // Loop through all vocabulary items, sanitizing each question and answer to prevent XSS
         data.words_with_performance.forEach(entry => {
             const questionIndex = entry.locales.findIndex(l => l.practise_type === 'question');
             const answerIndex = entry.locales.findIndex(l => l.practise_type === 'answer');
 
-            // Add questions and answers to their respective arrays
-            if (questionIndex !== -1) questions.push(entry.words[questionIndex]);
-            if (answerIndex !== -1) answers.push(entry.words[answerIndex]);
+            // Add sanitized questions and answers to their respective arrays
+            if (questionIndex !== -1) questions.push(sanitize(entry.words[questionIndex]));
+            if (answerIndex !== -1) answers.push(sanitize(entry.words[answerIndex]));
         });
 
         // Assign to global variables (if needed)
