@@ -28,6 +28,21 @@ html, body {
     cursor: pointer;
     border: none;
   }
+  .icon_knop_mini{
+    width: fit-content;
+    background-color: hsla(195, 88%, 53%, 0);
+    color: black;
+    transition-duration: 1s;
+  }
+  .icon_knop_mini:hover{
+    background-color: hsl(0, 0%, 0%);
+    color: rgb(255, 255, 255);
+  }
+  .beneden{
+    position: fixed;
+    top: 1;
+    bottom: 0;
+  }
 
   a:hover,
   button:hover {
@@ -54,17 +69,6 @@ html, body {
 
   ul li {
     margin: 5px 0;
-  }
-
-  /* Container voor lange lijsten, zorgt ervoor dat de knoppen zichtbaar blijven */
-  #vragenList,
-  #antwoordenList {
-    max-height: 300px;
-    /* Limiteer de hoogte van de lijsten */
-    overflow-y: auto;
-    /* Zorgt voor scrollen als de lijst te lang is */
-    padding-right: 15px;
-    /* Voorkomt dat de scrollbalk de lijst bedekt */
   }
 
   /* Als de tekst te lang is, zorg ervoor dat het goed omgebroken wordt */
