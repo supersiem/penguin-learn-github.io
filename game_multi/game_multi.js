@@ -16,6 +16,7 @@ document.getElementById("icon_knop_vraag_" + random_num).innerHTML = antwoorden[
 
 document.getElementById("icon_knop_vraag_" + random_num).setAttribute("onClick", "javascript: anwoord_multi(true);");
 
+if (true){
 if (document.getElementById("icon_knop_vraag_1").innerHTML == antwoorden[vraag]) {
     if (!(random_num == 1)) {
         document.getElementById("icon_knop_vraag_1").innerHTML = antwoord_oud[getRandomInt(0, antwoord_oud.length)];
@@ -77,3 +78,4 @@ if (document.getElementById("icon_knop_vraag_1").innerHTML == antwoorden[vraag])
                 if (!(random_num == 4)) {
                     document.getElementById("icon_knop_vraag_4").innerHTML = antwoord_oud[getRandomInt(0, antwoord_oud.length)];
                 }}
+}
