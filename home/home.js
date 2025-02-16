@@ -1,4 +1,4 @@
-let BASE_URL = 'https://raw.githubusercontent.com/studyGOgratis/lijsten/refs/heads/main/';
+let BASE_URL = 'https://raw.githubusercontent.com/penguin-learn/lijsten/refs/heads/main/';
 
 (async () => {
     try {
@@ -7,9 +7,7 @@ let BASE_URL = 'https://raw.githubusercontent.com/studyGOgratis/lijsten/refs/hea
             fetchData(),
             waitForDOM()
         ]);
-        if (!data) {
-            return
-        }
+        
         container.innerHTML = '';
         createTree(data, container, '');
         const root = container.querySelector('.node');
@@ -21,15 +19,7 @@ let BASE_URL = 'https://raw.githubusercontent.com/studyGOgratis/lijsten/refs/hea
 
 async function fetchData() {
     let response
-    try {
-        response = await fetch(BASE_URL + 'index.json');
-    } catch (error) {
-        console.log("DEV modus")
-        BASE_URL = ""
-        showError("je hebt geen internet maar een test lijst is geladen")
-        handleFileClick('testlijst', false)
-        return
-    }
+    response = await fetch(BASE_URL + 'index.json');
     if (!response.ok) {
         console.log("DEV modus")
         BASE_URL = ""
