@@ -28,7 +28,6 @@ function nieuwe_vraag() {
     if (vragen.length == 0) {
         antwoorden = [...antwoord_oud]
         vragen = [...vragen_oud]
-        console.log(vragen)
         goTo("home.html")
     }
     vraag = Math.floor(Math.random() * vragen.length);
@@ -55,7 +54,7 @@ function importlijsten(waar) {
     goTo('kies_wat_wil_doen.html');
 }
 function importlijsten_fromstr(input1) {
-    let temp = input1;
+    let temp = sanitize(input1);
     // Split the string into lines (each line is an array element)
     const lines = temp.split('\n').filter(line => line.trim() !== ''); // Remove empty lines
 
@@ -82,14 +81,14 @@ async function anwoord(input2) {
         AntwoordGoed()
         return
     }
-    input2.innerHTML = 'het antwoord was ' + antwoorden[vraag];
+    input2.innerHTML = 'het antwoord was ' + sanitize(antwoorden[vraag]);
     icon_element.innerHTML = "ok"
 }
 async function anwoord_ig(input2) {
     fase = 1;
     let icon_element = document.getElementById('icon_knop');
     icon_element.setAttribute("onClick", "javascript: AntwoordGoed(); goTo('start_ig.html');");
-    input2.innerHTML = 'het antwoord was ' + antwoorden[vraag] + ' had je het goed?';
+    input2.innerHTML = 'het antwoord was ' + sanitize(antwoorden[vraag]) + ' had je het goed?';
     icon_element.innerHTML = "Ja!"
     let icon_elemen2 = document.getElementById("icon_knop2")
     icon_elemen2.style.display = 'inline';
@@ -113,7 +112,7 @@ async function anwoord_multi(input2) {
         AntwoordGoed()
         return
     }
-    text_vak.innerHTML = 'het antwoord was ' + antwoorden[vraag];
+    text_vak.innerHTML = 'het antwoord was ' + sanitize(antwoorden[vraag]);
 
     icon_element.innerHTML = "ok"
 
