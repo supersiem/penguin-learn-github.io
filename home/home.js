@@ -94,9 +94,7 @@ function handleFileClick(filePath, alert) {
         .then(content => {
             // code on click
             importlijsten_fromstr(content);
-            if (alert) {
-                alert(`Content of ${filePath}:\n\n${content.slice(0, 200)}...`);
-            }
+            // alert(`Content of ${filePath}:\n\n${content.slice(0, 200)}...`);
         })
         .catch(error => {
             console.error('Error fetching file:', error);
