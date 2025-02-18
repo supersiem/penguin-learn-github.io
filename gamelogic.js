@@ -1,6 +1,7 @@
 let vragen = ["je", "il"];
 let antwoorden = ["ik", "hij"];
-let antwoord_oud = antwoorden;
+let antwoord_oud = [...antwoorden];
+let vragen_oud = [...vragen]
 let mode = 1
 let vraag = 0;
 let fase = 0;
@@ -23,7 +24,10 @@ function nieuwe_vraag() {
     }
     fase = 0;
     if (vragen.length == 0) {
-        window.location.reload();
+        antwoorden = [...antwoord_oud]
+        vragen = [...vragen_oud]
+        console.log(vragen)
+        goTo("home.html")
     }
     vraag = Math.floor(Math.random() * vragen.length);
     return vraag
@@ -53,8 +57,10 @@ function importlijsten(waar) {
     vragen = [...array1]
     antwoorden = [...array2]
     antwoord_oud = [...antwoorden];
+    vragen_oud = [...vragen];
 
-    goTo('start.html');
+
+    goTo('kies_wat_wil_doen.html');
 
 
 }
@@ -69,7 +75,9 @@ function importlijsten_fromstr(input1) {
     vragen = [...array1]
     antwoorden = [...array2]
  antwoord_oud = [...antwoorden];
-    goTo('start.html');
+ vragen_oud = [...vragen];
+
+    goTo('kies_wat_wil_doen.html');
 
 
 }
@@ -89,6 +97,15 @@ async function anwoord(input2) {
 
 
     icon_element.innerHTML = "ok"
+}
+async function anwoord_ig(input2) {
+    fase = 1;
+    let icon_element = document.getElementById('icon_knop');
+    icon_element.setAttribute( "onClick", "javascript: AntwoordGoed(); goTo('start_ig.html');" );
+    input2.innerHTML = 'het antwoord was '+ antwoorden[vraag]+' had je het goed?';
+    icon_element.innerHTML = "Ja!"
+let icon_elemen2 = document.getElementById("icon_knop2")
+    icon_elemen2.style.display = 'inline';
 }
 async function anwoord_multi(input2) {
 
@@ -155,7 +172,8 @@ async function get_list(id) {
         vragen = [...questions];
         antwoorden = [...answers];
         antwoord_oud = [...antwoorden];
-        goTo('start.html');
+    vragen_oud = [...vragen];
+    goTo('kies_wat_wil_doen.html');
 
     } catch (error) {
         console.error('Error fetching or processing data:', error);

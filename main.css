@@ -1,7 +1,7 @@
 
 html, body {
     font-family: Arial, sans-serif;
-    background-color: #f9f9f9;
+    background-color: var(--wit);
     margin: 0;
     padding: 0;
   }
@@ -20,25 +20,40 @@ html, body {
     display: inline-block;
     margin: 10px;
     padding: 10px 20px;
-    background-color: #169abb;
-    color: white;
+    background-color: var(--blauw);
+    color: var(--wit);
     text-decoration: none;
     border-radius: 5px;
     transition: background-color 0.3s ease;
     cursor: pointer;
     border: none;
   }
+  .icon_knop_mini{
+    width: fit-content;
+    background-color: var(--wit);
+    color: var(--zwart);
+    transition-duration: 1s;
+  }
+  .icon_knop_mini:hover{
+    background-color: var(--zwart);
+    color: var(--wit);
+  }
+  .beneden{
+    position: fixed;
+    top: 1;
+    bottom: 0;
+  }
 
   a:hover,
   button:hover {
-    background-color: hsl(195, 88%, 53%);
+    background-color: var(--blauw);
   }
 
   textarea {
     width: 100%;
     padding: 10px;
     margin: 10px 0;
-    border: 1px solid #ccc;
+    border: 1px solid var(--grijs);
     border-radius: 5px;
   }
 
@@ -54,17 +69,6 @@ html, body {
 
   ul li {
     margin: 5px 0;
-  }
-
-  /* Container voor lange lijsten, zorgt ervoor dat de knoppen zichtbaar blijven */
-  #vragenList,
-  #antwoordenList {
-    max-height: 300px;
-    /* Limiteer de hoogte van de lijsten */
-    overflow-y: auto;
-    /* Zorgt voor scrollen als de lijst te lang is */
-    padding-right: 15px;
-    /* Voorkomt dat de scrollbalk de lijst bedekt */
   }
 
   /* Als de tekst te lang is, zorg ervoor dat het goed omgebroken wordt */
@@ -92,6 +96,8 @@ html, body {
   }
 
   textarea {
+    background-color: var(--wit);
+    color: var(--zwart);
     font-size: 0.9em;
   }
 
@@ -100,4 +106,19 @@ html, body {
   }
 li {
     list-style: none;
+}
+body{
+  color: var(--zwart);
+
+}
+:root{
+  --wit: #f9f9f9;
+  --zwart: #000000;
+  --grijs: #707070;
+  --blauw:hsl(195, 83%, 45%);
+}
+.darkmode {
+  --wit: #1c1c1c;
+  --zwart: #f9f9f9;
+  --blauw:hsl(195, 79%, 40%);
 }

@@ -10,9 +10,10 @@ Penguin learn is een FOSS alternatief voor StudyGo
 Penguin learn kan tot nu toe:
  - [x] lijsten
  - [x] toets modes
- - [ ]  meerkeuze
+ - [x] meerkeuze
  - [x] studygo API GET
  - [ ] favorieten
  - [ ] opslaan van eigenlijsten
  - [ ] studygo API POST
  - [ ] in gedachten modus
+ - [x] darkmode
