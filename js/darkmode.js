@@ -1,14 +1,28 @@
-let darkmode = Boolean(localStorage.getItem("darkmode"))
-// warn: dit bestaat nog niet en doet nog niks
+let darkmode = localStorage.getItem("darkmode")
+
 function toggle_darkmode() {
-    darkmode = !darkmode
+    if (darkmode == "darkmode"){
+        darkmode = "nee"
+    }else{
+        darkmode = "darkmode"
+    }
     localStorage.setItem("darkmode", darkmode)
+    update_darkmode()
 }
 function update_darkmode() {
-    // TODO: dit maken
-
-    console.log(darkmode)
-    // TODO: dit doen
+    if (darkmode == "darkmode") {
+        document.getElementById("root").classList.add("darkmode")
+        document.getElementById("darkmode_button_icon").classList.remove("fa-moon")
+        document.getElementById("darkmode_button_icon").classList.add("fa-sun")
+    }else{
+        try {
+            document.getElementById("root").classList.remove("darkmode")
+            document.getElementById("darkmode_button_icon").classList.remove("fa-sun")
+            document.getElementById("darkmode_button_icon").classList.add("fa-moon")
+        } catch (error) {
+            console.log("darkmode not found")
+        }
+    }
     // document.getElementById("darkmode_button_icon")
 }
 update_darkmode()
