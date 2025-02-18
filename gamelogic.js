@@ -1,24 +1,26 @@
 let vragen = ["je", "il"];
 let antwoorden = ["ik", "hij"];
+// worden gebruikt om de vragen en antwoorden te resten en multikeuze
 let antwoord_oud = [...antwoorden];
 let vragen_oud = [...vragen]
-let mode = 1
+// het nummer van de huidige vraag in vragen en antwoorden
 let vraag = 0;
+// fase word gebruikt voor het doorgaan als je op enter drukt
 let fase = 0;
 
 // Add this helper function at the top to sanitize strings
 function sanitize(str) {
     return str.replace(/&/g, '&amp;')
-              .replace(/</g, '&lt;')
-              .replace(/>/g, '&gt;')
-              .replace(/"/g, '&quot;')
-              .replace(/'/g, '&#39;');
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
 }
 
 function nieuwe_vraag() {
-
-    try{
-    document.getElementById("antwoord_vak").focus();
+    // pak een nieuwen vraag om te gebruiken
+    try {
+        document.getElementById("antwoord_vak").focus();
     } catch (error) {
         console.log("not found");
     }
@@ -32,19 +34,10 @@ function nieuwe_vraag() {
     vraag = Math.floor(Math.random() * vragen.length);
     return vraag
 }
-function vraag_UI() {
-    document.getElementById("vraag").innerHTML = vragen[vraag];
-}
-function antwoord_UI() {
-    document.getElementById("antwoord").innerHTML = antwoorden[vraag];
-}
+
 function AntwoordGoed() {
     vragen.splice(vraag, 1);
     antwoorden.splice(vraag, 1);
-
-}
-function MEERKEUZE_ANDWOORD_UI() {
-    document.getElementById("MEERKEUZE_ANDWOORD").innerHTML = document.getElementById("MEERKEUZE_ANDWOORD").innerHTML + antwoorden[vraag];
 }
 function importlijsten(waar) {
     let temp = document.getElementById(waar).value;
@@ -59,10 +52,7 @@ function importlijsten(waar) {
     antwoord_oud = [...antwoorden];
     vragen_oud = [...vragen];
 
-
     goTo('kies_wat_wil_doen.html');
-
-
 }
 function importlijsten_fromstr(input1) {
     let temp = input1;
@@ -74,8 +64,8 @@ function importlijsten_fromstr(input1) {
     const array2 = lines.filter((_, index) => index % 2 !== 0); // Odd indices (1, 3, 5...)
     vragen = [...array1]
     antwoorden = [...array2]
- antwoord_oud = [...antwoorden];
- vragen_oud = [...vragen];
+    antwoord_oud = [...antwoorden];
+    vragen_oud = [...vragen];
 
     goTo('kies_wat_wil_doen.html');
 
@@ -86,25 +76,22 @@ async function anwoord(input2) {
     let icon_element = document.getElementById('icon_knop');
     let antwoord_van_gebruiker = document.getElementById('antwoord_vak').value.replace(/[^0-9a-z]/gi, '').toLowerCase();
     let antwoord_met_filter = antwoorden[vraag].replace(/[^0-9a-z]/gi, '').toLowerCase();
-    icon_element.setAttribute( "onClick", "javascript: goTo('start.html');" );
-    if(antwoord_van_gebruiker === antwoord_met_filter){
+    icon_element.setAttribute("onClick", "javascript: goTo('start.html');");
+    if (antwoord_van_gebruiker === antwoord_met_filter) {
         input2.innerHTML = 'hoera je hebt het goed! &#x1F389;'
         AntwoordGoed()
         return
     }
-    input2.innerHTML = 'het antwoord was '+ antwoorden[vraag];
-
-
-
+    input2.innerHTML = 'het antwoord was ' + antwoorden[vraag];
     icon_element.innerHTML = "ok"
 }
 async function anwoord_ig(input2) {
     fase = 1;
     let icon_element = document.getElementById('icon_knop');
-    icon_element.setAttribute( "onClick", "javascript: AntwoordGoed(); goTo('start_ig.html');" );
-    input2.innerHTML = 'het antwoord was '+ antwoorden[vraag]+' had je het goed?';
+    icon_element.setAttribute("onClick", "javascript: AntwoordGoed(); goTo('start_ig.html');");
+    input2.innerHTML = 'het antwoord was ' + antwoorden[vraag] + ' had je het goed?';
     icon_element.innerHTML = "Ja!"
-let icon_elemen2 = document.getElementById("icon_knop2")
+    let icon_elemen2 = document.getElementById("icon_knop2")
     icon_elemen2.style.display = 'inline';
 }
 async function anwoord_multi(input2) {
@@ -119,14 +106,14 @@ async function anwoord_multi(input2) {
     fase = 1;
     let text_vak = document.getElementById('vraag')
     let icon_element = document.getElementById('icon_knop_vraag_1');
-    icon_element.setAttribute( "onClick", "javascript: goTo('start_multi.html');" );
-    if(input2){
+    icon_element.setAttribute("onClick", "javascript: goTo('start_multi.html');");
+    if (input2) {
         icon_element.innerHTML = "hoera!";
         text_vak.innerHTML = 'hoera je hebt het goed! &#x1F389;'
         AntwoordGoed()
         return
     }
-    text_vak.innerHTML = 'het antwoord was '+ antwoorden[vraag];
+    text_vak.innerHTML = 'het antwoord was ' + antwoorden[vraag];
 
     icon_element.innerHTML = "ok"
 
@@ -135,17 +122,17 @@ async function get_list(id) {
     try {
         // Fetch data using the proxy
         const response = await fetch('https://corsproxy.io/' + encodeURIComponent(`https://api.wrts.nl/api/v3/public/lists/${id}`));
-        
+
         // Check if the response is OK (status code 200-299)
         if (!response.ok) {
             new Notify({
                 title: 'Error!',
                 text: 'Er ging iets mis bij het ophalen van de lijst. Is de ID correct?',
                 autoclose: true,
-                autotimeout: 3000,
+                autotimeout: 5000,
                 effect: 'slide',
                 speed: 300,
-                position: 'right top',
+                position: 'center',
                 status: 'error'
             });
             throw new Error(`HTTP error! Status: ${response.status}`);
@@ -168,24 +155,36 @@ async function get_list(id) {
             if (answerIndex !== -1) answers.push(sanitize(entry.words[answerIndex]));
         });
 
-        // Assign to global variables (if needed)
+        // update arrays
         vragen = [...questions];
         antwoorden = [...answers];
         antwoord_oud = [...antwoorden];
-    vragen_oud = [...vragen];
-    goTo('kies_wat_wil_doen.html');
+        vragen_oud = [...vragen];
+
+        // rederect
+        goTo('kies_wat_wil_doen.html');
 
     } catch (error) {
-        console.error('Error fetching or processing data:', error);
+        new Notify({
+            title: 'Error!',
+            text: 'Er is een fout in de code: ' + error.message,
+            autoclose: true,
+            autotimeout: 5000,
+            effect: 'slide',
+            speed: 300,
+            position: 'center',
+            status: 'error'
+        });
     }
 }
-function enterpressalert(e, textarea){
+function enterpressalert(e, textarea) {
+    // deze functie word geroepen wanneer je op een toets drukt
     var code = (e.keyCode ? e.keyCode : e.which);
-    if(code == 13) { //Enter keycode
-        if(fase == 0){
+    if (code == 13) { //Enter keycode
+        if (fase == 0) {
             anwoord(document.getElementById('vraag'));
             return;
         }
-        if(fase == 1){goTo('start.html');return;}
+        if (fase == 1) { goTo('start.html'); return; }
     }
-    }
+}

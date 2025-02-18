@@ -23,6 +23,5 @@ function update_darkmode() {
             console.log("darkmode not found")
         }
     }
-    // document.getElementById("darkmode_button_icon")
 }
 update_darkmode()
