@@ -17,6 +17,7 @@ function sanitize(str) {
         .replace(/'/g, '&#39;');
 }
 
+
 function nieuwe_vraag() {
     // pak een nieuwen vraag om te gebruiken
     try {
