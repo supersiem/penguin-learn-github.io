@@ -14,6 +14,6 @@ Penguin learn kan tot nu toe:
  - [x] studygo API GET
  - [ ] favorieten
  - [ ] opslaan van eigenlijsten
- - [ ] studygo API POST
- - [ ] in gedachten modus
+ - [ ] studygo API POST <-- moet alleen nog mergen
+ - [x] in gedachten modus
  - [x] darkmode
