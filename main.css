@@ -21,7 +21,7 @@ html, body {
     margin: 10px;
     padding: 10px 20px;
     background-color: var(--blauw);
-    color: var(--wit);
+    color: #f9f9f9;
     text-decoration: none;
     border-radius: 5px;
     transition: background-color 0.3s ease;
@@ -46,7 +46,7 @@ html, body {
 
   a:hover,
   button:hover {
-    background-color: var(--blauw);
+    background-color: var(--blauw2);
   }
 
   textarea {
@@ -116,9 +116,12 @@ body{
   --zwart: #000000;
   --grijs: #707070;
   --blauw:hsl(195, 83%, 45%);
+  --blauw2: hsl(195, 88%, 53%);
 }
 .darkmode {
   --wit: #1c1c1c;
   --zwart: #f9f9f9;
   --blauw:hsl(195, 79%, 40%);
+  --blauw2: hsl(195, 78%, 49%);
+
 }
