@@ -22,7 +22,7 @@ function nieuwe_vraag() {
         antwoorden = [...antwoord_oud]
         vragen = [...vragen_oud]
         console.log(vragen)
-        goTo("home.html")
+        goTo("dynamicPage:home")
     }
     vraag = Math.floor(Math.random() * vragen.length);
     return vraag
@@ -38,7 +38,7 @@ async function anwoord(input2) {
     let icon_element = document.getElementById('icon_knop');
     let antwoord_van_gebruiker = document.getElementById('antwoord_vak').value.replace(/[^0-9a-z]/gi, '').toLowerCase();
     let antwoord_met_filter = antwoorden[vraag].replace(/[^0-9a-z]/gi, '').toLowerCase();
-    icon_element.setAttribute("onClick", "javascript: goTo('start.html');");
+    icon_element.setAttribute("onClick", "javascript: goTo('dynamicPage:game');");
     if (antwoord_van_gebruiker === antwoord_met_filter) {
         input2.innerHTML = 'hoera je hebt het goed! &#x1F389;'
         AntwoordGoed()
@@ -50,7 +50,7 @@ async function anwoord(input2) {
 async function anwoord_ig(input2) {
     fase = 1;
     let icon_element = document.getElementById('icon_knop');
-    icon_element.setAttribute("onClick", "javascript: AntwoordGoed(); goTo('start_ig.html');");
+    icon_element.setAttribute("onClick", "javascript: AntwoordGoed(); goTo('dynamicPage:game_ig');");
     input2.innerHTML = 'het antwoord was ' + antwoorden[vraag] + ' had je het goed?';
     icon_element.innerHTML = "Ja!"
     let icon_elemen2 = document.getElementById("icon_knop2")
@@ -68,7 +68,7 @@ async function anwoord_multi(input2) {
     fase = 1;
     let text_vak = document.getElementById('vraag')
     let icon_element = document.getElementById('icon_knop_vraag_1');
-    icon_element.setAttribute("onClick", "javascript: goTo('start_multi.html');");
+    icon_element.setAttribute("onClick", "javascript: goTo('dynamicPage:game_multi');");
     if (input2) {
         icon_element.innerHTML = "hoera!";
         text_vak.innerHTML = 'hoera je hebt het goed! &#x1F389;'
@@ -89,6 +89,6 @@ function enterpressalert(e, textarea) {
             anwoord(document.getElementById('vraag'));
             return;
         }
-        if (fase == 1) { goTo('start.html'); return; }
+        if (fase == 1) { goTo('dynamicPage:game'); return; }
     }
 }
