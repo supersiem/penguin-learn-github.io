@@ -6,7 +6,12 @@ let custom_components = [{
     "version": "1.0",
     "custom_attributes": ["data"]
 }];
-
+function str(non_string) {
+    return non_string.toString();
+}
+function num(non_number) {
+    return Number(non_number);
+}
 function activate() {
     try {
         custom_components.forEach(component => {
@@ -77,7 +82,7 @@ function activate() {
     activate_triggers();
 }
 async function goTo(url) {
-    console.log(url.replaceAll("dynamicPage:",''));
+
     if (url.replaceAll("dynamicPage:",'') !== url) {
         url = url.replaceAll("dynamicPage:", '');
         const data = await makeRequest(url + "/" + url + ".html");
