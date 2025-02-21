@@ -77,8 +77,8 @@ function activate() {
     activate_triggers();
 }
 async function goTo(url) {
-    console.log(url.replaceAll("dynamicPage:", ''));
-    if (url.replaceAll("dynamicPage:", '') !== url) {
+    console.log(url.replaceAll("dynamicPage:",''));
+    if (url.replaceAll("dynamicPage:",'') !== url) {
         url = url.replaceAll("dynamicPage:", '');
         const data = await makeRequest(url + "/" + url + ".html");
 
