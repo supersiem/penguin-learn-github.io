@@ -12,35 +12,35 @@ function activate() {
         custom_components.forEach(component => {
             let linkTriggers3 = document.querySelectorAll(component.tag);
             linkTriggers3.forEach(async element => {
-                let data = await makeRequest(component.tag +"/"+ component.url + ".html");
+                let data = await makeRequest(component.tag + "/" + component.url + ".html");
 
                 data = data.replaceAll("{{version}}", component.version);
                 data = data.replaceAll("{{name}}", component.name);
                 component.custom_attributes.forEach(attr => {
                     data = data.replaceAll("{{" + attr + "}}", element.getAttribute(attr));
-                    console.log("{{" + attr + "}}");    
+                    console.log("{{" + attr + "}}");
                 })
                 element.innerHTML = data;
                 changeTag(element, "custom_component_container");
                 activate_triggers();
 
-                data = await makeRequest(component.tag +"/"+ component.url + ".js");
+                data = await makeRequest(component.tag + "/" + component.url + ".js");
 
                 data = data.replaceAll("{{version}}", component.version);
                 data = data.replaceAll("{{name}}", component.name);
                 component.custom_attributes.forEach(attr => {
                     data = data.replaceAll("{{" + attr + "}}", element.getAttribute(attr));
-                    console.log("{{" + attr + "}}");    
+                    console.log("{{" + attr + "}}");
                 })
                 eval(data);
             });
-            
+
         });
     } catch (error) {
         console.error('Error:', error);
     }
 
-    
+
     try {
         let allLinks = document.querySelectorAll('weblink'); // Select <weblink> tags
 
@@ -49,12 +49,12 @@ function activate() {
             if (originalLink && originalLink !== "") {
                 element.setAttribute('href', "javascript:goTo('" + originalLink + "')"); // Set the href to JS function
                 element.innerHTML = element.innerHTML; // Transfer inner content of <weblink> to <a>
-    
+
                 changeTag(element, 'a'); // Replace <weblink> with the new <a> tag
 
             }
         });
-    
+
     } catch (error) {
         console.error('Error:', error);
     }
@@ -64,12 +64,12 @@ function activate() {
 
         linkTriggers.forEach(element => {
             let originalLink = element.getAttribute('js'); // Get the original link
-    
+
             element.setAttribute('href', "javascript:eval('" + originalLink + "')"); // Set the href to JS function
             element.innerHTML = element.innerHTML; // Transfer inner content of <weblink> to <a>
-    
+
             changeTag(element, 'a'); // Replace <weblink> with the new <a> tag
-    
+
         });
     } catch (error) {
         console.error('Error:', error);
@@ -77,14 +77,28 @@ function activate() {
     activate_triggers();
 }
 async function goTo(url) {
-    const data = await makeRequest(url);
-    if (checkElementExists('body')) {
-        document.getElementById('body').innerHTML = data;
-    } else {
-        document.querySelector('webpage').innerHTML = data;
-    }
-    activate();
+    console.log(url.replaceAll("dynamicPage:",''));
+    if (url.replaceAll("dynamicPage:",'') !== url) {
+        url = url.replaceAll("dynamicPage:", '');
+        const data = await makeRequest(url + "/" + url + ".html");
 
+        if (checkElementExists('body')) {
+            document.getElementById('body').innerHTML = data;
+        } else {
+            document.querySelector('webpage').innerHTML = data;
+        }
+        activate();
+        const data2 = await makeRequest(url + "/" + url + ".js");
+        eval(data2);
+    } else {
+        const data = await makeRequest(url);
+        if (checkElementExists('body')) {
+            document.getElementById('body').innerHTML = data;
+        } else {
+            document.querySelector('webpage').innerHTML = data;
+        }
+        activate();
+    }
 }
 async function makeRequest(url) {
     try {
