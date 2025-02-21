@@ -1,2 +1,2 @@
-makeCustomComponent("the navbar", "navbar", "navbar", "1.0", ["topbar_items"]);
-goTo("home.html");
+// ga naar de home pagina
+goTo("dynamicPage:home");

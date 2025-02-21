@@ -1,21 +1,49 @@
-<!-- index.html -->
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" id="root">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>custom_framework test v1.3</title>
-    <script src="custom_framework.js"></script>
-    <script defer src="loader.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>penguin learn</title>
+  <link rel="icon" href="IconKitchen-Output/web/icon-512-maskable.png" type="image/x-icon">
+  <!-- spul niet van ons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simple-notify/dist/simple-notify.css" />
+  <script src="https://cdn.jsdelivr.net/npm/simple-notify/dist/simple-notify.min.js"></script>
+  <script src="https://kit.fontawesome.com/f918d5f2c4.js" crossorigin="anonymous"></script>
+  <!-- javascript -->
+  <script src="custom_framework.js"></script>
+  <script defer src="loader.js"></script>
+  <script defer src="gamelogic.js"></script>
+  <script defer src="js/darkmode.js"></script>
+  <script defer src="js/studygo.js"></script>
+  <script defer src="js/lijst_verzoek_template_SG.js"></script>
+  <script defer src="js/import.js"></script>
+  <!-- CSS -->
+  <link rel="stylesheet" href="home/icon_knop.css">
+  <link rel="stylesheet" href="main.css">
+
 </head>
+
 <body>
-    <navbar topbar_items='[
-        {"name": "Home", "url": "home.html"},
-        {"name": "About", "url": "over_ons.html"},
-        {"name": "Contact", "url": "dynamicPage:Contact"}
-    ]'></navbar>
-    <cool_button text="click me"></cool_button>
-    <webpage></webpage>
+  <lu class="sidebar" style="width: 12.5%;">
+    <li>
+      <button class="icon_knop" onclick="goTo('instelingen/lijst_editor.html')"><i class="fa fa-plus"></i></button>
+    </li>
+    <li>
+      <button class="icon_knop" onclick="goTo('dynamicPage:home')"><i class="fa fa-home"></i></button>
+    </li>
+    <li>
+      <button class="icon_knop" onclick="goTo('kies_wat_wil_doen.html')"><i class="fa fa-play"></i></button>
+    </li>
+    <button class="icon_knop_mini beneden" onclick="toggle_darkmode()"><i id="darkmode_button_icon"
+        class="fa fa-moon"></i></button>
+  </lu>
+
+
+  <webpage style="margin-left:2em; margin-top: 0px; margin-right: 0px;">
+    als goTo word gebruikt komt de pagina in deze tag
+  </webpage>
 
 </body>
+
 </html>
