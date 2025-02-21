@@ -1,1 +1,0 @@
-document.getElementById("Contact_text").innerText = "12345"
