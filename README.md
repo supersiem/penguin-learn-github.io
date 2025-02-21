@@ -9,7 +9,7 @@
 ---
 # Penguin Learn
 
-Penguin learn is een FOSS alternatief voor StudyGo
+Penguin learn is een FOSS cient voor StudyGo
 
 Penguin learn kan tot nu toe:
  - [x] lijsten
@@ -22,3 +22,7 @@ Penguin learn kan tot nu toe:
  - [x] opslaan van eigenlijsten
  - [ ] favorieten
  - [ ] telefoon
+
+ ## TODO
+ - [ ] eigen studgo acount inlog gegevens voor iedereen 
+ - [ ] SG home pagina
