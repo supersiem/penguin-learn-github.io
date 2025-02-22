@@ -19,6 +19,6 @@ Penguin learn kan tot nu toe:
  - [x] darkmode
  - [x] studygo API POST
  - [x] opslaan van eigenlijsten
- - [ ] favorieten
- - [ ] telefoon
+ - [ ] zoeken
+ - [ ] ui rework voor telefoons (Bootstrap?)
  - [ ] SG home pagina
