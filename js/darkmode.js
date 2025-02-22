@@ -1,9 +1,9 @@
 let darkmode = localStorage.getItem("darkmode")
 
 function toggle_darkmode() {
-    if (darkmode == "darkmode"){
+    if (darkmode == "darkmode") {
         darkmode = "nee"
-    }else{
+    } else {
         darkmode = "darkmode"
     }
     localStorage.setItem("darkmode", darkmode)
@@ -12,13 +12,13 @@ function toggle_darkmode() {
 function update_darkmode() {
     if (darkmode == "darkmode") {
         document.getElementById("root").classList.add("darkmode")
-        document.getElementById("darkmode_button_icon").classList.remove("fa-moon")
-        document.getElementById("darkmode_button_icon").classList.add("fa-sun")
-    }else{
+        document.getElementById("darkmode_button_icon").classList.remove("ph-moon")
+        document.getElementById("darkmode_button_icon").classList.add("ph-sun")
+    } else {
         try {
             document.getElementById("root").classList.remove("darkmode")
-            document.getElementById("darkmode_button_icon").classList.remove("fa-sun")
-            document.getElementById("darkmode_button_icon").classList.add("fa-moon")
+            document.getElementById("darkmode_button_icon").classList.remove("ph-sun")
+            document.getElementById("darkmode_button_icon").classList.add("ph-moon")
         } catch (error) {
             console.log("darkmode not found")
         }

@@ -77,8 +77,8 @@ function activate() {
     activate_triggers();
 }
 async function goTo(url) {
-    console.log(url.replaceAll("dynamicPage:",''));
-    if (url.replaceAll("dynamicPage:",'') !== url) {
+    console.log(url.replaceAll("dynamicPage:", ''));
+    if (url.replaceAll("dynamicPage:", '') !== url) {
         url = url.replaceAll("dynamicPage:", '');
         const data = await makeRequest(url + "/" + url + ".html");
 
@@ -160,4 +160,20 @@ function activate_triggers() {
     } catch (error) {
         console.error('Error:', error);
     }
+}
+function str(non_string) {
+
+
+    return non_string.toString();
+
+
+}
+
+
+function num(non_number) {
+
+
+    return Number(non_number);
+
+
 }

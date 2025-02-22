@@ -2,7 +2,7 @@
 // note: de studygo api is iritant dus wees gewaarschuwd
 
 // WARN: LAAT DIT NIET AAN STAAN
-const negeer_token_vernieuwen_datum = false
+const negeer_token_vernieuwen_datum = true
 
 // WARN: DIT ZET ALLE STUDYGO FUNCTIES UIT DUS ZET NIET AAN
 const gebruik_studygo_api = true
@@ -10,13 +10,13 @@ const gebruik_studygo_api = true
 
 // Add this helper function at the top to sanitize strings
 function sanitize(str) {
-    try{
+    try {
         return str.replace(/&/g, '&amp;')
             .replace(/</g, '&lt;')
             .replace(/>/g, '&gt;')
             .replace(/"/g, '&quot;')
             .replace(/'/g, '&#39;');
-    } catch (error) { console.log(error) }  
+    } catch (error) { console.log(error) }
 }
 
 async function get_user_data() {
@@ -41,6 +41,7 @@ async function get_user_data() {
     } catch (error) { throw error }
 }
 async function get_token() {
+
     if (!gebruik_studygo_api) return
     let token_vernieuwen_datum = localStorage.getItem("token_vernieuwen_datum");
     if (token_vernieuwen_datum == null) {
@@ -57,32 +58,31 @@ async function get_token() {
         myHeaders.append("Referer", "https://studygo.com");
         myHeaders.append("Sec-Fetch-Dest", "empty");
 
-        try {
-            const response = await fetch(
-                'https://corsproxy.io/?url=' +
-                encodeURIComponent("https://api.wrts.nl/api/v3/auth/get_token?email=penguinlearn@googlegroups.com&password=hoi als je dit ziet ben je in de code van de website aan het kijken "),
-                {
-                    method: "POST",
-                    headers: myHeaders,
-                    redirect: "follow"
-                }
-            );
+        const response = await fetch(
+            'https://corsproxy.io/?url=' +
+            encodeURIComponent("https://api.wrts.nl/api/v3/auth/get_token?email=" + localStorage.getItem("email_studygo") + "&password=" + localStorage.getItem("password_studygo")),
+            {
+                method: "POST",
+                headers: myHeaders,
+                redirect: "follow"
+            }
+        );
 
-            const result = await response.json();
-            console.log(result);
+        const result = await response.json();
+        console.log(result);
 
-            // Update localStorage
-            localStorage.setItem("token", result.auth_token.toString());
-            localStorage.setItem("token_vernieuwen_datum", Number(result.renew_from));
-            return result.auth_token.toString()
-        } catch (error) {
-            console.error("Error:", error);
-            return localStorage.getItem("token")
-        }
+        // Update localStorage
+        localStorage.setItem("token", result.auth_token.toString());
+        localStorage.setItem("token_vernieuwen_datum", Number(result.renew_from));
+        return result.auth_token.toString()
 
     } else { return localStorage.getItem("token") }
 }
 async function maak_lijst(pl_lijst_antwoorden, pl_lijst_vragen, title) {
+
+    if (!localStorage.getItem("email_studygo")) goTo("SG_login.html");
+    if (!localStorage.getItem("password_studygo")) goTo("SG_login.html");
+
     if (!gebruik_studygo_api) return
     let myHeaders = new Headers();
     myHeaders.append("x-auth-token", await get_token());
@@ -121,7 +121,6 @@ async function maak_lijst(pl_lijst_antwoorden, pl_lijst_vragen, title) {
         return result;
     } catch (error) { throw error }
 }
-
 async function get_list(id) {
     if (!gebruik_studygo_api) return
     try {
@@ -179,9 +178,32 @@ async function get_list(id) {
         throw error
     }
 }
-
 async function upload_lijst() {
     if (!gebruik_studygo_api) return
-    let temp = await maak_lijst(antwoorden, vragen, "test")
+    let temp = await maak_lijst(antwoorden, vragen, Date.now());
     return temp.id
+}
+async function login(GN, WW) {
+    console.log(GN, WW)
+    localStorage.setItem("email_studygo", str(GN))
+    localStorage.setItem("password_studygo", str(WW))
+
+    try { await get_token(); goTo("dynamicPage:home"); } catch (error) {
+        new Notify({
+            title: 'Error!',
+            text: 'je email of wachtwoord is verkeerd, probeer het opnieuw.',
+            autoclose: true,
+            autotimeout: 5000,
+            effect: 'slide',
+            speed: 300,
+            position: 'center',
+            status: 'error'
+        });
+        throw error
+    }
+
+}
+function is_logd_in() {
+    if (!localStorage.getItem("email_studygo") || !localStorage.getItem("password_studygo")) return false
+    return true
 }
