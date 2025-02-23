@@ -165,3 +165,19 @@ function activate_triggers() {
 function isMobile() {
     return ((window.innerWidth <= 800) && (window.innerHeight <= 600));
 }
+function str(non_string) {
+
+
+    return non_string.toString();
+
+
+}
+
+
+function num(non_number) {
+
+
+    return Number(non_number);
+
+
+}
