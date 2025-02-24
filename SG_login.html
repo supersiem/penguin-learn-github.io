@@ -1,17 +1,31 @@
-<div class="flex" style="height: 27rem;text-align: center;">
-    <div class="text-center">
-        <img src="IconKitchen-Output/web/icon-512-maskable.png" alt="penguin learn"
-            style="width: 10rem;border-radius: 10px;">
+<div class="d-flex align-items-center py-4 bg-body-tertiary">
 
-        <h1>log in met studygo</h1>
+    <main class="form-signin w-100 m-auto" style="max-width: 30vw;">
 
-        <input required autofocus="True" class="text_box" type="text" id="name" name="name" value=""
-            style="width: 100%;max-width: 10rem;" placeholder="email"> <br>
-        <input required placeholder="wachtwoord" class="text_box" type="password" id="password" name="password"
-            style="width: 100%;max-width: 10rem;margin-top: 10px;" value=""><br>
-        <input onclick="login(document.getElementById('name').value, document.getElementById('password').value);"
-            style="width: 100%;max-width: 5rem;" type="submit" value="login" class="button">
-        <br>
-    </div>
 
+        <div class="text-center">
+            <div style="  display: block;
+            margin-left: auto;
+            margin-right: auto;">
+                <img src="IconKitchen-Output/web/icon-512-maskable.png" alt="penguin learn"
+                    style="width: 10rem;border-radius: 10px;">
+            </div>
+            <h1 class="h3 mb-3 fw-normal text-center">Log in met studygo</h1>
+
+            <div class="form-floating" style="background-color: var(--wit);">
+                <input type="email" class="form-control" id="name" placeholder="name@example.com"
+                    style="background-color: var(--wit);">
+                <label for="name">email</label>
+            </div>
+            <div class="form-floating">
+                <input type="password" class="form-control" id="password" placeholder="Password"
+                    style="background-color: var(--wit);">
+                <label for="password">wachtwoord</label>
+            </div>
+
+            <input onclick="login(document.getElementById('name').value, document.getElementById('password').value);"
+                style="width: 100%;max-width: 20vw;" type="submit" value="login" class="button">
+
+        </div>
+    </main>
 </div>

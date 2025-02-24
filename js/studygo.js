@@ -2,7 +2,7 @@
 // note: de studygo api is iritant dus wees gewaarschuwd
 
 // WARN: LAAT DIT NIET AAN STAAN
-const negeer_token_vernieuwen_datum = true
+const negeer_token_vernieuwen_datum = false
 
 // WARN: DIT ZET ALLE STUDYGO FUNCTIES UIT DUS ZET NIET AAN
 const gebruik_studygo_api = true
@@ -17,6 +17,27 @@ function sanitize(str) {
             .replace(/"/g, '&quot;')
             .replace(/'/g, '&#39;');
     } catch (error) { console.log(error) }
+}
+async function get_user_home() {
+    if (!gebruik_studygo_api) return
+    let myHeaders = new Headers();
+    myHeaders.append("x-auth-token", await get_token());
+
+    try {
+        const response = await fetch(
+            'https://cros.vankeulensiem.workers.dev/?url=' +
+            encodeURIComponent("https://api.wrts.nl/api/v3/items_overview"),
+            {
+                method: "GET",
+                headers: myHeaders,
+                redirect: "follow"
+            }
+        );
+
+        let result = await response.json();
+
+        return result;
+    } catch (error) { throw error }
 }
 
 async function get_user_data() {
@@ -199,6 +220,9 @@ async function login(GN, WW) {
             position: 'center',
             status: 'error'
         });
+
+        localStorage.removeItem("email_studygo")
+        localStorage.removeItem("password_studygo")
         throw error
     }
 

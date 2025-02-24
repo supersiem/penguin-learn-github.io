@@ -69,19 +69,9 @@ button {
   font-size: 1em;
 }
 
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-ul li {
-  margin: 5px 0;
-}
-
 /* Als de tekst te lang is, zorg ervoor dat het goed omgebroken wordt */
 textarea,
-select,
-ul {
+select {
   word-wrap: break-word;
 }
 
@@ -109,7 +99,7 @@ input[type="password"] {
   background-color: var(--wit);
   color: var(--zwart);
   font-size: 0.9em;
-
+  max-width: 40vw;
   padding: 0;
   height: 30px;
   position: relative;
@@ -120,29 +110,22 @@ input[type="password"] {
 }
 
 body {
-  display: flex;
-}
-
-li {
-  list-style: none;
-}
-
-body {
   color: var(--zwart);
 
 }
 
 :root {
-  --wit: #f9f9f9;
+  --wit: #F8F9FA;
   --zwart: #000000;
-  --grijs: #707070;
+  --grijs: #c4c4c4;
   --blauw: hsl(195, 83%, 45%);
   --blauw2: hsl(195, 88%, 53%);
 }
 
 .darkmode {
-  --wit: #1c1c1c;
+  --wit: #2B3036;
   --zwart: #f9f9f9;
+  --grijs: #7d7d7d;
   --blauw: hsl(195, 79%, 40%);
   --blauw2: hsl(195, 78%, 49%);
 }
