@@ -163,7 +163,7 @@ function activate_triggers() {
 }
 
 function isMobile() {
-    return ((window.innerWidth <= 800) && (window.innerHeight <= 600));
+    return (window.innerWidth <= 800);
 }
 function str(non_string) {
 
