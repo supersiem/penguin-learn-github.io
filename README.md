@@ -20,5 +20,5 @@ Penguin learn kan tot nu toe:
  - [x] studygo API POST
  - [x] opslaan van eigenlijsten
  - [x] ui rework voor telefoons
+ - [x] SG home pagina
  - [ ] zoeken
- - [ ] SG home pagina

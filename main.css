@@ -99,7 +99,7 @@ input[type="password"] {
   background-color: var(--wit);
   color: var(--zwart);
   font-size: 0.9em;
-  max-width: 40vw;
+  max-width: 34rem;
   padding: 0;
   height: 30px;
   position: relative;

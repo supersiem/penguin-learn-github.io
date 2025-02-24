@@ -7,6 +7,7 @@ const negeer_token_vernieuwen_datum = false
 // WARN: DIT ZET ALLE STUDYGO FUNCTIES UIT DUS ZET NIET AAN
 const gebruik_studygo_api = true
 
+let user_name;
 
 // Add this helper function at the top to sanitize strings
 function sanitize(str) {
@@ -26,7 +27,7 @@ async function get_user_home() {
     try {
         const response = await fetch(
             'https://cros.vankeulensiem.workers.dev/?url=' +
-            encodeURIComponent("https://api.wrts.nl/api/v3/items_overview"),
+            encodeURIComponent("https://api.wrts.nl/api/v3/public/users/" + user_name + "/practiceable_items"),
             {
                 method: "GET",
                 headers: myHeaders,
@@ -39,7 +40,6 @@ async function get_user_home() {
         return result;
     } catch (error) { throw error }
 }
-
 async function get_user_data() {
     if (!gebruik_studygo_api) return
     let myHeaders = new Headers();
@@ -201,7 +201,7 @@ async function get_list(id) {
 }
 async function upload_lijst() {
     if (!gebruik_studygo_api) return
-    let temp = await maak_lijst(antwoorden, vragen, Date.now());
+    let temp = await maak_lijst(antwoorden, vragen, "hoi");
     return temp.id
 }
 async function login(GN, WW) {
@@ -230,4 +230,11 @@ async function login(GN, WW) {
 function is_logd_in() {
     if (!localStorage.getItem("email_studygo") || !localStorage.getItem("password_studygo")) return false
     return true
+}
+
+async function preload() {
+    if (!user_name) {
+        user_name = await get_user_data();
+        user_name = user_name.username;
+    }
 }

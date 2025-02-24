@@ -1,38 +1,22 @@
+<div class="card" style="margin: 1vw; display: none;" id="template" onclick="">
+    <div class="d-flex flex-wrap align-items-center p-2 p-md-3 gap-2">
+        <div class="fw-bold flex-grow-1">{{naam}}</div>
 
-    <style>
-        .tree {
-            font-family: Arial, sans-serif;
-            padding: 20px;
+        <div class="d-flex flex-wrap align-items-center gap-2">
+            <small class="text-muted">gemaakt op {{last_updated_at_display}}</small>
+
+            <span class="badge bg-primary py-2">{{woorden}}</span>
+        </div>
+    </div>
+</div>
+<style>
+    @media (max-width: 768px) {
+        #template {
+            margin: 4vw !important;
         }
 
-        .node {
-            margin: 4px 0;
-            cursor: pointer;
-            user-select: none;
-            color:  var(--zwart);
+        #template .badge {
+            margin-left: auto;
         }
-
-        .node-file {
-            cursor: default;
-            color:  var(--zwart);
-        }
-
-        .node:hover {
-            background-color: var(--grijs);
-        }
-
-        .children {
-            margin-left: 20px;
-            border-left: 1px dashed var(--wit);
-            padding-left: 12px;
-        }
-
-        .toggle-icon {
-            margin-right: 6px;
-        }
-
-        .hidden {
-            display: none;
-        }
-    </style>
-    <div id="tree-container" class="tree"></div>
+    }
+</style>
