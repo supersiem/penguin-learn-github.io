@@ -43,3 +43,9 @@ function importlijsten_fromstr(input1) {
 
 
 }
+function importlijsten_frominputs(vrg, ant) {
+    vragen = [...vrg]
+    antwoorden = [...ant]
+    antwoord_oud = [...antwoorden];
+    vragen_oud = [...vragen];
+}
