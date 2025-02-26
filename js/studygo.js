@@ -99,7 +99,7 @@ async function get_token() {
 
     } else { return localStorage.getItem("token") }
 }
-async function maak_lijst(pl_lijst_antwoorden, pl_lijst_vragen, title) {
+async function maak_lijst(pl_lijst_antwoorden, pl_lijst_vragen, title, wat_oefene_wij) {
 
     if (!localStorage.getItem("email_studygo")) goTo("SG_login.html");
     if (!localStorage.getItem("password_studygo")) goTo("SG_login.html");
@@ -118,12 +118,13 @@ async function maak_lijst(pl_lijst_antwoorden, pl_lijst_vragen, title) {
                 "antwoord"
             ],
             "image_url": null
-        })
+        });
         raw_body.list.words_collection[raw_body.list.words_collection.length - 1].id = raw_body.list.words_collection.length;
         raw_body.list.words_collection[raw_body.list.words_collection.length - 1].words[0] = element;
         raw_body.list.words_collection[raw_body.list.words_collection.length - 1].words[1] = pl_lijst_antwoorden[pl_lijst_vragen.indexOf(element)];
     });
     raw_body.list.title = title;
+    raw_body.list.subject_id = wat_oefene_wij;
     raw_body = JSON.stringify(raw_body);
 
     try {
@@ -201,7 +202,7 @@ async function get_list(id) {
 }
 async function upload_lijst() {
     if (!gebruik_studygo_api) return
-    let temp = await maak_lijst(antwoorden, vragen, "hoi");
+    let temp = await maak_lijst(antwoorden, vragen, "hoi", "41");
     return temp.id
 }
 async function login(GN, WW) {

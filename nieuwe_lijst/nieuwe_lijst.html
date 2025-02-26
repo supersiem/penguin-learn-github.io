@@ -1,7 +1,22 @@
-<div class="card" style="margin: 0vw;padding: 0%;" id="" onclick="">
+<div class="card" style="margin: 1vw;">
     <div class="d-flex justify-content-around mobile-stack">
         <input type="email" class="form-control email-input" placeholder="de naam voor jouw lijst"
             style="background-color: var(--wit);" id="lijst_naam_input">
+        <div class="stuurhelp"></div>
+        <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                style="background-color: var(--blauw);" aria-expanded="false" id="dropdown_txt_mk_list">
+                welk vak?
+            </button>
+            <ul class="dropdown-menu" id="dropdown_holder">
+                <li id="dropdown_item">
+                    <p onclick="dropdown_value_now_lol = '{id}';update_ui_mk_list('{naam}', '{icon_link}');"
+                        class="dropdown-item" id="dropdown_item_inner">{naam}
+                        <img src="{icon_link}" alt="">
+                    </p>
+                </li>
+            </ul>
+        </div>
     </div>
 </div>
 <div class="card" style="margin: 1vw;display: none;" id="template2">
