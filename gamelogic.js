@@ -29,6 +29,8 @@ function nieuwe_vraag() {
 }
 
 function AntwoordGoed() {
+    var audio = new Audio('https://www.myinstants.com/media/sounds/pub-quiz-2023.mp3');
+    audio.play();
     vragen.splice(vraag, 1);
     antwoorden.splice(vraag, 1);
 }
@@ -41,6 +43,7 @@ async function anwoord(input2) {
     icon_element.setAttribute("onClick", "javascript: goTo('dynamicPage:game');");
     if (antwoord_van_gebruiker === antwoord_met_filter) {
         input2.innerHTML = 'hoera je hebt het goed! &#x1F389;'
+
         AntwoordGoed()
         return
     }
