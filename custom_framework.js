@@ -18,7 +18,6 @@ function activate() {
                 data = data.replaceAll("{{name}}", component.name);
                 component.custom_attributes.forEach(attr => {
                     data = data.replaceAll("{{" + attr + "}}", element.getAttribute(attr));
-                    console.log("{{" + attr + "}}");
                 })
                 element.innerHTML = data;
                 changeTag(element, "custom_component_container");
@@ -30,7 +29,6 @@ function activate() {
                 data = data.replaceAll("{{name}}", component.name);
                 component.custom_attributes.forEach(attr => {
                     data = data.replaceAll("{{" + attr + "}}", element.getAttribute(attr));
-                    console.log("{{" + attr + "}}");
                 })
                 eval(data);
             });
@@ -99,19 +97,6 @@ async function goTo(url) {
         activate();
     }
 }
-async function makeRequest(url) {
-    try {
-        const response = await fetch(url);
-        if (!response.ok) {
-            throw new Error('Network response was not ok ' + response.statusText);
-        }
-        const data = await response.text();
-        return data;
-    } catch (error) {
-        console.error('Error:', error);
-        return null;
-    }
-}
 function makeCustomComponent(name, tag, url, version, custom_attributes) {
     custom_components.push({
         "name": name,
@@ -128,6 +113,41 @@ function checkElementExists(id) {
     } else {
         return false;
     }
+}
+function activate_triggers() {
+    try {
+        let Triggers = document.querySelectorAll('trigger'); // Select <trigger> tags
+        Triggers.forEach(element => {
+            eval(element.innerHTML);
+            element.remove();
+        });
+    } catch (error) {
+        console.error('Error:', error);
+    }
+}
+
+// utils
+async function makeRequest(url) {
+    try {
+        const response = await fetch(url);
+        if (!response.ok) {
+            throw new Error('Network response was not ok ' + response.statusText);
+        }
+        const data = await response.text();
+        return data;
+    } catch (error) {
+        console.error('Error:', error);
+        return null;
+    }
+}
+function isMobile() {
+    return (window.innerWidth <= 800);
+}
+function str(non_string) {
+    return non_string.toString();
+}
+function num(non_number) {
+    return Number(non_number);
 }
 function changeTag(element, newTagName) {
     if (!element) return null;
@@ -146,37 +166,4 @@ function changeTag(element, newTagName) {
 
     // Return the new element
     return newElement;
-}
-function activate_triggers() {
-    try {
-        let Triggers = document.querySelectorAll('trigger'); // Select <trigger> tags
-        console.log(Triggers);
-        Triggers.forEach(element => {
-            console.log(element.innerHTML);
-            eval(element.innerHTML);
-            element.remove();
-        });
-    } catch (error) {
-        console.error('Error:', error);
-    }
-}
-
-function isMobile() {
-    return (window.innerWidth <= 800);
-}
-function str(non_string) {
-
-
-    return non_string.toString();
-
-
-}
-
-
-function num(non_number) {
-
-
-    return Number(non_number);
-
-
 }
