@@ -8,6 +8,29 @@ let custom_components = [{
 }];
 
 function activate() {
+    activateCustomComponent();
+    activateWeblinks();
+    activate_triggers();
+}
+async function activateWeblinks() {
+    try {
+        let allLinks = document.querySelectorAll('weblink'); // Select <weblink> tags
+        allLinks.forEach(element => {
+            let originalLink = element.getAttribute('href'); // Get the original link
+            if (originalLink && originalLink !== "") {
+                element.setAttribute('href', "javascript:goTo('" + originalLink + "')"); // Set the href to JS function
+                element.innerHTML = element.innerHTML; // Transfer inner content of <weblink> to <a>
+
+                changeTag(element, 'a'); // Replace <weblink> with the new <a> tag
+
+            }
+        });
+
+    } catch (error) {
+        console.error('Error:', error);
+    }
+}
+async function activateCustomComponent() {
     try {
         custom_components.forEach(component => {
             let linkTriggers3 = document.querySelectorAll(component.tag);
@@ -37,42 +60,6 @@ function activate() {
     } catch (error) {
         console.error('Error:', error);
     }
-
-
-    try {
-        let allLinks = document.querySelectorAll('weblink'); // Select <weblink> tags
-
-        allLinks.forEach(element => {
-            let originalLink = element.getAttribute('href'); // Get the original link
-            if (originalLink && originalLink !== "") {
-                element.setAttribute('href', "javascript:goTo('" + originalLink + "')"); // Set the href to JS function
-                element.innerHTML = element.innerHTML; // Transfer inner content of <weblink> to <a>
-
-                changeTag(element, 'a'); // Replace <weblink> with the new <a> tag
-
-            }
-        });
-
-    } catch (error) {
-        console.error('Error:', error);
-    }
-
-    try {
-        let linkTriggers = document.querySelectorAll('linktrigger'); // Select <weblink> tags
-
-        linkTriggers.forEach(element => {
-            let originalLink = element.getAttribute('js'); // Get the original link
-
-            element.setAttribute('href', "javascript:eval('" + originalLink + "')"); // Set the href to JS function
-            element.innerHTML = element.innerHTML; // Transfer inner content of <weblink> to <a>
-
-            changeTag(element, 'a'); // Replace <weblink> with the new <a> tag
-
-        });
-    } catch (error) {
-        console.error('Error:', error);
-    }
-    activate_triggers();
 }
 async function goTo(url) {
     let config_for_goto = {

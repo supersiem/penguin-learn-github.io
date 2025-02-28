@@ -5,5 +5,5 @@ echo "build minified version"
 uglifyjs custom_framework.js -c -o custom_framework.min.js
 echo "comit and push"
 git add .
-git commit -m "update"
+git commit -m "auto build please see the release notes"
 git push
