@@ -101,8 +101,8 @@ async function get_token() {
 }
 async function maak_lijst(pl_lijst_antwoorden, pl_lijst_vragen, title, wat_oefene_wij) {
 
-    if (!localStorage.getItem("email_studygo")) goTo("SG_login.html");
-    if (!localStorage.getItem("password_studygo")) goTo("SG_login.html");
+    if (!localStorage.getItem("email_studygo")) goTo("SG_login");
+    if (!localStorage.getItem("password_studygo")) goTo("SG_login");
 
     if (!gebruik_studygo_api) return
     let myHeaders = new Headers();
@@ -184,7 +184,7 @@ async function get_list(id) {
         vragen_oud = [...vragen];
 
         // rederect
-        goTo('kies_wat_wil_doen.html');
+        goTo('kies_wat_wil_doen');
 
     } catch (error) {
         new Notify({
@@ -210,7 +210,7 @@ async function login(GN, WW) {
     localStorage.setItem("email_studygo", str(GN))
     localStorage.setItem("password_studygo", str(WW))
 
-    try { await get_token(); goTo("dynamicPage:home"); } catch (error) {
+    try { await get_token(); goTo("home -dp"); } catch (error) {
         new Notify({
             title: 'Error!',
             text: 'je email of wachtwoord is verkeerd, probeer het opnieuw.',

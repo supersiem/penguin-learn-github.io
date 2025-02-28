@@ -24,7 +24,7 @@ async function importlijsten(waar) {
         position: 'center',
     });
 
-    goTo('kies_wat_wil_doen.html');
+    goTo('kies_wat_wil_doen');
 }
 function importlijsten_fromstr(input1) {
     let temp = input1;
@@ -39,7 +39,7 @@ function importlijsten_fromstr(input1) {
     antwoord_oud = [...antwoorden];
     vragen_oud = [...vragen];
 
-    goTo('kies_wat_wil_doen.html');
+    goTo('kies_wat_wil_doen');
 
 
 }
