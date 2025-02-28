@@ -2,10 +2,10 @@
 // note: de studygo api is iritant dus wees gewaarschuwd
 
 // WARN: LAAT DIT NIET AAN STAAN
-const negeer_token_vernieuwen_datum = false
+const negeer_token_vernieuwen_datum = false;
 
 // WARN: DIT ZET ALLE STUDYGO FUNCTIES UIT DUS ZET NIET AAN
-const gebruik_studygo_api = true
+const gebruik_studygo_api = true;
 
 let user_name;
 
@@ -17,10 +17,10 @@ function sanitize(str) {
             .replace(/>/g, '&gt;')
             .replace(/"/g, '&quot;')
             .replace(/'/g, '&#39;');
-    } catch (error) { console.log(error) }
+    } catch (error) { console.log(error); }
 }
 async function get_user_home() {
-    if (!gebruik_studygo_api) return
+    if (!gebruik_studygo_api) return;
     let myHeaders = new Headers();
     myHeaders.append("x-auth-token", await get_token());
 
@@ -38,10 +38,10 @@ async function get_user_home() {
         let result = await response.json();
 
         return result;
-    } catch (error) { throw error }
+    } catch (error) { throw error; }
 }
 async function get_user_data() {
-    if (!gebruik_studygo_api) return
+    if (!gebruik_studygo_api) return;
     let myHeaders = new Headers();
     myHeaders.append("x-auth-token", await get_token());
 
@@ -59,11 +59,11 @@ async function get_user_data() {
         let result = await response.json();
 
         return result;
-    } catch (error) { throw error }
+    } catch (error) { throw error; }
 }
 async function get_token() {
 
-    if (!gebruik_studygo_api) return
+    if (!gebruik_studygo_api) return;
     let token_vernieuwen_datum = localStorage.getItem("token_vernieuwen_datum");
     if (token_vernieuwen_datum == null) {
         localStorage.setItem("token_vernieuwen_datum", 1);
@@ -95,16 +95,16 @@ async function get_token() {
         // Update localStorage
         localStorage.setItem("token", result.auth_token.toString());
         localStorage.setItem("token_vernieuwen_datum", Number(result.renew_from));
-        return result.auth_token.toString()
+        return result.auth_token.toString();
 
-    } else { return localStorage.getItem("token") }
+    } else { return localStorage.getItem("token"); }
 }
 async function maak_lijst(pl_lijst_antwoorden, pl_lijst_vragen, title, wat_oefene_wij) {
 
     if (!localStorage.getItem("email_studygo")) goTo("SG_login");
     if (!localStorage.getItem("password_studygo")) goTo("SG_login");
 
-    if (!gebruik_studygo_api) return
+    if (!gebruik_studygo_api) return;
     let myHeaders = new Headers();
     myHeaders.append("x-auth-token", await get_token());
     // WARN: WIJZIG DE VOLGENDE DE REGEL NIET WANT HET IS HEEL BLANGELRIJK (behalven als je variable namen veranderd)
@@ -141,10 +141,10 @@ async function maak_lijst(pl_lijst_antwoorden, pl_lijst_vragen, title, wat_oefen
         let result = await response.json();
 
         return result;
-    } catch (error) { throw error }
+    } catch (error) { throw error; }
 }
 async function get_list(id) {
-    if (!gebruik_studygo_api) return
+    if (!gebruik_studygo_api) return;
     try {
         // Fetch data using the proxy
         const response = await fetch('https://corsproxy.io/?url=' + encodeURIComponent(`https://api.wrts.nl/api/v3/public/lists/${id}`));
@@ -197,18 +197,18 @@ async function get_list(id) {
             position: 'center',
             status: 'error'
         });
-        throw error
+        throw error;
     }
 }
 async function upload_lijst() {
-    if (!gebruik_studygo_api) return
+    if (!gebruik_studygo_api) return;
     let temp = await maak_lijst(antwoorden, vragen, "hoi", "41");
-    return temp.id
+    return temp.id;
 }
 async function login(GN, WW) {
-    console.log(GN, WW)
-    localStorage.setItem("email_studygo", str(GN))
-    localStorage.setItem("password_studygo", str(WW))
+    console.log(GN, WW);
+    localStorage.setItem("email_studygo", str(GN));
+    localStorage.setItem("password_studygo", str(WW));
 
     try { await get_token(); goTo("home -dp"); } catch (error) {
         new Notify({
@@ -222,15 +222,15 @@ async function login(GN, WW) {
             status: 'error'
         });
 
-        localStorage.removeItem("email_studygo")
-        localStorage.removeItem("password_studygo")
-        throw error
+        localStorage.removeItem("email_studygo");
+        localStorage.removeItem("password_studygo");
+        throw error;
     }
 
 }
 function is_logd_in() {
-    if (!localStorage.getItem("email_studygo") || !localStorage.getItem("password_studygo")) return false
-    return true
+    if (!localStorage.getItem("email_studygo") || !localStorage.getItem("password_studygo")) return false;
+    return true;
 }
 
 async function preload() {

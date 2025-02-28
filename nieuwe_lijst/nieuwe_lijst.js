@@ -49,7 +49,7 @@ async function import_from_editor() {
         }
     }
     importlijsten_frominputs(quwestions, answer);
-    goTo("kies_wat_wil_doen.html"); if (!gebruik_studygo_api) return
+    goTo("kies_wat_wil_doen");
     maak_lijst(antwoorden, vragen, document.getElementById("lijst_naam_input").value, dropdown_value_now_lol);
 
 }

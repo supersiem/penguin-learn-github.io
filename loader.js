@@ -1,6 +1,6 @@
 // ga naar de home pagina
-goTo("dynamicPage:home");
+goTo("home -dp");
 
 if (!is_logd_in()) {
-    goTo("SG_login.html");
+    goTo("SG_login");
 }

@@ -13,4 +13,4 @@ const lijst_verzoek_template_SG = {
         "title": "titel hier",
         "shared": true
     }
-}
+};
