@@ -9,6 +9,7 @@
             <span class="badge bg-primary py-2">{{woorden}}</span>
         </div>
     </div>
+
 </div>
 <style>
     @media (max-width: 768px) {
@@ -21,3 +22,13 @@
         }
     }
 </style>
+<div class="container text-center" style="padding: 0;">
+    <div class="input-group flex flex-row" style="max-width: 80%; font-size: large; margin: 0 auto;">
+        <input type="text" class="form-control flex-item" placeholder="zoeken op studygo..." aria-label="Search"
+            style="height: 2em; padding-left: 0.5em;" id="zoek_veld">
+        <button class="btn btn-outline-secondary flex-item" type="button" style="height: 2em;"
+            onclick="goTo('zoeken -dp -pi=url='+document.getElementById('zoek_veld').value.replaceAll(' ', '_'))">
+            <i class="ph-bold ph-magnifying-glass"></i>
+        </button>
+    </div>
+</div>

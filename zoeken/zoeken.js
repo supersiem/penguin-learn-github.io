@@ -14,6 +14,21 @@ async function run(link) {
 
 
     home = home.result_sections[0].results;
+    if (home.length == 0) {
+        console.log("geen lijsten gevonden");
+        let temp = div.cloneNode(true);
+        // show the thing
+        temp.style.display = "block";
+        temp.innerHTML = temp.innerHTML.replaceAll("{{naam}}", "geen lijsten gevonden");
+        temp.innerHTML = temp.innerHTML.replaceAll("{{eigenaar}}", "penguin learn");
+        temp.innerHTML = temp.innerHTML.replaceAll("{{icon_link}}", "IconKitchen-Output/web/icon-512.png");
+
+
+        temp.setAttribute("onClick", "javascript:goTo('home -dp');");
+        container.appendChild(temp);
+        return;
+    }
+
     home.forEach(lijst => {
         let temp = div.cloneNode(true);
         // show the thing
@@ -28,4 +43,4 @@ async function run(link) {
     });
 }
 
-run("https://api.wrts.nl/api/v3/search?apply_default_filters=true&search_terms=" + "{url}" + "&limit=20&offset=0&type=user_lists");
+run("https://api.wrts.nl/api/v3/search?apply_default_filters=true&search_terms=" + encodeURIComponent("{url}".replaceAll("_", "%20")) + "&limit=20&offset=0&type=user_lists");

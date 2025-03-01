@@ -2,7 +2,7 @@ let vragen = ["je", "il"];
 let antwoorden = ["ik", "hij"];
 // worden gebruikt om de vragen en antwoorden te resten en multikeuze
 let antwoord_oud = [...antwoorden];
-let vragen_oud = [...vragen]
+let vragen_oud = [...vragen];
 // het nummer van de huidige vraag in vragen en antwoorden
 let vraag = 0;
 // fase word gebruikt voor het doorgaan als je op enter drukt
@@ -19,13 +19,13 @@ function nieuwe_vraag() {
     }
     fase = 0;
     if (vragen.length == 0) {
-        antwoorden = [...antwoord_oud]
-        vragen = [...vragen_oud]
-        console.log(vragen)
-        goTo("dynamicPage:home")
+        antwoorden = [...antwoord_oud];
+        vragen = [...vragen_oud];
+        console.log(vragen);
+        goTo("home -dp");
     }
     vraag = Math.floor(Math.random() * vragen.length);
-    return vraag
+    return vraag;
 }
 
 function AntwoordGoed() {
@@ -40,23 +40,23 @@ async function anwoord(input2) {
     let icon_element = document.getElementById('icon_knop');
     let antwoord_van_gebruiker = document.getElementById('antwoord_vak').value.replace(/[^0-9a-z]/gi, '').toLowerCase();
     let antwoord_met_filter = antwoorden[vraag].replace(/[^0-9a-z]/gi, '').toLowerCase();
-    icon_element.setAttribute("onClick", "javascript: goTo('dynamicPage:game');");
+    icon_element.setAttribute("onClick", "javascript: goTo('-dp game');");
     if (antwoord_van_gebruiker === antwoord_met_filter) {
-        input2.innerHTML = 'hoera je hebt het goed! &#x1F389;'
+        input2.innerHTML = 'hoera je hebt het goed! &#x1F389;';
 
-        AntwoordGoed()
-        return
+        AntwoordGoed();
+        return;
     }
     input2.innerHTML = 'het antwoord was ' + antwoorden[vraag];
-    icon_element.innerHTML = "ok"
+    icon_element.innerHTML = "ok";
 }
 async function anwoord_ig(input2) {
     fase = 1;
     let icon_element = document.getElementById('icon_knop');
-    icon_element.setAttribute("onClick", "javascript: AntwoordGoed(); goTo('dynamicPage:game_ig');");
+    icon_element.setAttribute("onClick", "javascript: AntwoordGoed(); goTo('-dp game_ig');");
     input2.innerHTML = 'het antwoord was ' + antwoorden[vraag] + ' had je het goed?';
-    icon_element.innerHTML = "Ja!"
-    let icon_elemen2 = document.getElementById("icon_knop2")
+    icon_element.innerHTML = "Ja!";
+    let icon_elemen2 = document.getElementById("icon_knop2");
     icon_elemen2.style.display = 'inline';
 }
 async function anwoord_multi(input2) {
@@ -69,18 +69,18 @@ async function anwoord_multi(input2) {
     icon_element3.remove();
     icon_element4.remove();
     fase = 1;
-    let text_vak = document.getElementById('vraag')
+    let text_vak = document.getElementById('vraag');
     let icon_element = document.getElementById('icon_knop_vraag_1');
-    icon_element.setAttribute("onClick", "javascript: goTo('dynamicPage:game_multi');");
+    icon_element.setAttribute("onClick", "javascript: goTo('-dp game_multi');");
     if (input2) {
         icon_element.innerHTML = "hoera!";
-        text_vak.innerHTML = 'hoera je hebt het goed! &#x1F389;'
-        AntwoordGoed()
-        return
+        text_vak.innerHTML = 'hoera je hebt het goed! &#x1F389;';
+        AntwoordGoed();
+        return;
     }
     text_vak.innerHTML = 'het antwoord was ' + antwoorden[vraag];
 
-    icon_element.innerHTML = "ok"
+    icon_element.innerHTML = "ok";
 
 }
 
@@ -92,6 +92,6 @@ function enterpressalert(e, textarea) {
             anwoord(document.getElementById('vraag'));
             return;
         }
-        if (fase == 1) { goTo('dynamicPage:game'); return; }
+        if (fase == 1) { goTo('-dp game'); return; }
     }
 }
