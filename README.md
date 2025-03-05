@@ -6,6 +6,8 @@
 </div>
 
 ---
+# note: ik heb binnenkort een paar toetsen dus ik kan hier even niet aan werken
+
 # Penguin Learn
 
 Penguin learn is een FOSS cient voor StudyGo
