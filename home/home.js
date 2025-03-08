@@ -5,6 +5,8 @@ async function run() {
     let container = document.getElementById("WP_container");
     console.log(home);
     home.forEach(lijst => {
+        if (lijst.type != "list") return;
+
         let temp = div.cloneNode(true);
         // show the thing
         temp.style.display = "block";
@@ -13,8 +15,8 @@ async function run() {
         temp.innerHTML = temp.innerHTML.replaceAll("{{woorden}}", lijst.word_count_display);
         temp.innerHTML = temp.innerHTML.replaceAll("{{icon_link}}", lijst.subject.icon_url);
 
-        temp.setAttribute("onClick", "javascript: get_list(" + lijst.id + ")")
+        temp.setAttribute("onClick", "javascript: get_list(" + lijst.id + ")");
         container.appendChild(temp);
     });
 }
-run()
+run();

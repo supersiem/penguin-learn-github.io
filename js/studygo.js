@@ -61,6 +61,28 @@ async function get_user_data() {
         return result;
     } catch (error) { throw error; }
 }
+async function get_group(id) {
+    if (!gebruik_studygo_api) return;
+    let myHeaders = new Headers();
+    myHeaders.append("x-auth-token", await get_token());
+
+    try {
+        const response = await fetch(
+            'https://cros.vankeulensiem.workers.dev/?url=' +
+            encodeURIComponent("	https://api.wrts.nl/api/v3/groups/" + id + "/practiceable_items"),
+            {
+                method: "GET",
+                headers: myHeaders,
+                redirect: "follow"
+            }
+        );
+
+        let result = await response.json();
+
+        return result;
+    } catch (error) { throw error; }
+}
+
 async function get_token() {
 
     if (!gebruik_studygo_api) return;
