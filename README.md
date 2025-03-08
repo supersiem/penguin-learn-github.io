@@ -8,7 +8,7 @@
 # Penguin Learn
 Penguin learn is een FOSS cient voor StudyGo
 
-v1 release date: 
+v1 release date: 22 maart
 
 todo:
  - [x] lijsten
