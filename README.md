@@ -6,9 +6,7 @@
 </div>
 
 ---
-
 # Penguin Learn
-
 Penguin learn is een FOSS cient voor StudyGo
 
 Penguin learn kan tot nu toe:
@@ -25,3 +23,5 @@ Penguin learn kan tot nu toe:
  - [x] zoeken
  - [x] groepen
  - [ ] laatste fixes (spelling plz iemand help mij)
+
+## gezocht: betatesters
