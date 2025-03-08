@@ -6,6 +6,7 @@
 </div>
 
 ---
+
 # Penguin Learn
 
 Penguin learn is een FOSS cient voor StudyGo
@@ -21,4 +22,6 @@ Penguin learn kan tot nu toe:
  - [x] opslaan van eigenlijsten
  - [x] ui rework voor telefoons
  - [x] SG home pagina
- - [ ] zoeken
+ - [x] zoeken
+ - [x] groepen
+ - [ ] laatste fixes (spelling plz iemand help mij)
