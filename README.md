@@ -6,7 +6,6 @@
 </div>
 
 ---
-# note: ik heb binnenkort een paar toetsen dus ik kan hier even niet aan werken
 
 # Penguin Learn
 
@@ -24,5 +23,5 @@ Penguin learn kan tot nu toe:
  - [x] ui rework voor telefoons
  - [x] SG home pagina
  - [x] zoeken
- - [ ] groepen
+ - [x] groepen
  - [ ] laatste fixes (spelling plz iemand help mij)
