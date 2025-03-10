@@ -92,7 +92,6 @@ async function get_token() {
     }
 
     if (token_vernieuwen_datum <= Number(Date.now().toString().slice(0, 10)) || negeer_token_vernieuwen_datum) {
-        console.log("token is bijna verlopen");
 
         let myHeaders = new Headers();
         myHeaders.append("Sec-Fetch-Mode", "cors");
@@ -103,7 +102,7 @@ async function get_token() {
 
         const response = await fetch(
             'https://corsproxy.io/?url=' +
-            encodeURIComponent("https://api.wrts.nl/api/v3/auth/get_token?email=" + localStorage.getItem("email_studygo") + "&password=" + localStorage.getItem("password_studygo")),
+            "https://api.wrts.nl/api/v3/auth/get_token?email=" + encodeURIComponent(localStorage.getItem("email_studygo") + "&password=" + localStorage.getItem("password_studygo")),
             {
                 method: "POST",
                 headers: myHeaders,
@@ -228,7 +227,6 @@ async function upload_lijst() {
     return temp.id;
 }
 async function login(GN, WW) {
-    console.log(GN, WW);
     localStorage.setItem("email_studygo", str(GN));
     localStorage.setItem("password_studygo", str(WW));
 
