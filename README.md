@@ -10,19 +10,5 @@ Penguin learn is een FOSS cient voor StudyGo
 
 v1 release date: 22 maart
 
-todo:
- - [x] lijsten
- - [x] toets modes
- - [x] studygo API GET
- - [x] in gedachten modus
- - [x] meerkeuze
- - [x] darkmode
- - [x] studygo API POST
- - [x] opslaan van eigenlijsten
- - [x] ui rework voor telefoons
- - [x] SG home pagina
- - [x] zoeken
- - [x] groepen
- - [ ] laatste fixes (spelling plz iemand help mij)
-
 ## gezocht: betatesters
+als je een probleem hebt gevonden maak dan een probleem aan op github
