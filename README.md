@@ -8,9 +8,9 @@
 # Penguin Learn
 Penguin learn is een FOSS cient voor StudyGo
 
-v1 release date: 22 maart
-stabiel: penguinlearn.github.io
-beta: kwikemart.me (met dank aan @mariomaaren)
+v1 release date: 22 maart <br>
+stabiel: penguinlearn.github.io <br>
+beta: kwikemart.me (met dank aan @mariomaaren) <br>
 
 ## gezocht: betatesters
 als je een probleem hebt gevonden maak dan een probleem aan op github
