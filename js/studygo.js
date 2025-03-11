@@ -84,7 +84,9 @@ async function get_group(id) {
 }
 
 async function get_token() {
-
+    if (!is_logd_in()) {
+        goTo("SG_login");
+    }
     if (!gebruik_studygo_api) return;
     let token_vernieuwen_datum = localStorage.getItem("token_vernieuwen_datum");
     if (token_vernieuwen_datum == null) {

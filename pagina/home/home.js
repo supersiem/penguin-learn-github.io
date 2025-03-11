@@ -19,4 +19,8 @@ async function run() {
         container.appendChild(temp);
     });
 }
+
+if (!is_logd_in()) {
+    goTo("SG_login");
+}
 run();
