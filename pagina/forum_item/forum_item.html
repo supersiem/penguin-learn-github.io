@@ -1,0 +1,28 @@
+<div class="card" style="margin: 1vw;" id="holder">
+    <h2 id="title"></h2>
+    <p id="content"></p>
+</div>
+
+<div class="card" style="margin: 1vw; display: none;" id="template" onclick="">
+    <div class="d-flex flex-wrap align-items-center p-2 p-md-3 gap-2">
+        <div class="fw-bold flex-grow-1">
+            <img src="{{icon_link}}" alt="" style="width: 1.4rem;height: 1.4rem;">
+            {{naam}}
+        </div>
+
+        <div class="d-flex flex-wrap align-items-center gap-2">
+            <small class="text-muted">{{eigenaar}}</small>
+        </div>
+    </div>
+</div>
+<style>
+    @media (max-width: 768px) {
+        #template {
+            margin: 4vw;
+        }
+
+        #template .badge {
+            margin-left: auto;
+        }
+    }
+</style>

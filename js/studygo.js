@@ -261,3 +261,90 @@ async function preload() {
         user_name = user_name.username;
     }
 }
+
+async function get_forum_home() {
+    if (!gebruik_studygo_api) return;
+    try {
+        // Fetch data using the proxy
+        const response = await fetch('https://corsproxy.io/?url=' + encodeURIComponent(`https://api.wrts.nl/api/v3/public/qna/questions`));
+
+        // Check if the response is OK (status code 200-299)
+        if (!response.ok) {
+            new Notify({
+                title: 'Error!',
+                text: 'Er ging iets mis bij het ophalen van de lijst. Is de ID correct?',
+                autoclose: true,
+                autotimeout: 5000,
+                effect: 'slide',
+                speed: 300,
+                position: 'center',
+                status: 'error'
+            });
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        // Parse the JSON data
+        const data = await response.json();
+
+
+        return data;
+
+
+
+    } catch (error) {
+        new Notify({
+            title: 'Error!',
+            text: 'Er is een fout in de code: ' + error.message,
+            autoclose: true,
+            autotimeout: 5000,
+            effect: 'slide',
+            speed: 300,
+            position: 'center',
+            status: 'error'
+        });
+        throw error;
+    }
+}
+async function get_forum_item(id) {
+    if (!gebruik_studygo_api) return;
+    try {
+        // Fetch data using the proxy
+        const response = await fetch('https://corsproxy.io/?url=' + encodeURIComponent(`https://api.wrts.nl/api/v3/public/qna/questions/${id}`));
+
+        // Check if the response is OK (status code 200-299)
+        if (!response.ok) {
+            new Notify({
+                title: 'Error!',
+                text: 'Er ging iets mis bij het ophalen van de lijst. Is de ID correct?',
+                autoclose: true,
+                autotimeout: 5000,
+                effect: 'slide',
+                speed: 300,
+                position: 'center',
+                status: 'error'
+            });
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        // Parse the JSON data
+        const data = await response.json();
+
+
+        return data;
+
+
+
+    } catch (error) {
+        new Notify({
+            title: 'Error!',
+            text: 'Er is een fout in de code: ' + error.message,
+            autoclose: true,
+            autotimeout: 5000,
+            effect: 'slide',
+            speed: 300,
+            position: 'center',
+            status: 'error'
+        });
+        throw error;
+    }
+}
