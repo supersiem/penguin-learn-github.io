@@ -2,7 +2,7 @@ const holder = document.getElementById("holder");
 const template = document.getElementById("template");
 
 async function run() {
-    let gebruiker = await get_user_data();
+    let gebruiker = await get_user_groups();
     let groepen = gebruiker.groups;
     groepen.forEach(groep => {
         let temp = template.cloneNode(true);
