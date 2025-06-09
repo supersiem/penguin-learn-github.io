@@ -22,9 +22,6 @@ async function run(id) {
             // note: de link is anders icon
             temp.innerHTML = temp.innerHTML.replaceAll("{{icon_link}}", "https://wrts-production.s3.eu-west-2.amazonaws.com/subject/1652713748-5a68133b-0779-4297-9e13-43b504f4450b");
         }
-
-
-        temp.setAttribute("onClick", "javascript: forum_item_calback(" + lijst.id + ")");
         container.appendChild(temp);
     });
 }
